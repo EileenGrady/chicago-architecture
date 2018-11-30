@@ -1,8 +1,13 @@
 body {
   min-height: 75rem;
+  color: "#fff";
 }
 
 h1 {
-  font-size: 2.4rem;
+  font-size: 3rem;
   text-align: center;
+}
+
+.container {
+  outline: gray;
 }
