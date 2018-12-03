@@ -11,3 +11,8 @@ h1 {
 .container {
   outline: gray;
 }
+
+#map {
+  width: 100%;
+  height: 480px;
+}
