@@ -14,39 +14,45 @@
 
   tiles.addTo(map);
 
-  // $.getJSON((Papa.parse('data/chicago-architecture.csv', {
-  //     download: true,
-  //     header: true,
-  //     complete: function(data) {
-  //
-  //     console.log('data: ', data);
-  //     drawMap(data)
-  //
-  //     }
-  //   })
+  // use omnivore to load the CSV data
+  omnivore.csv('data/chicago-architecture.csv')
+    .on('ready', function(e) {
+      drawMap(e.target.toGeoJSON());
+      console.log(e);
+    })
+    .on('error', function(e) {
+      console.log(e.error[0].message);
+    })
 
-    // use omnivore to load the CSV data
-    omnivore.csv('data/chicago-architecture.csv')
-      .on('ready', function(e) {
-        drawMap(e.target.toGeoJSON());
-      })
-      .on('error', function(e) {
-        console.log(e.error[0].message);
-      })
 
 
   function drawMap(data) {
+    // create Leaflet object and add to map
+        console.log(data);
+    var buildings = L.geoJson(data, {
+      onEachFeature: function(feature, layer) {
+        var props = feature.properties
+        var popup = ""
+        if (props.buildingName) {
+          popup += "<b>" + props.buildingName + "</b><br>" + props.Address + "<br>"
+        } else {
+          popup += "<b>" + props.Address + "</b><br>"
+        }
+        popup += "Primary Style: " + props.Style + "<br>"
+        if (props.architect) {
+          popup += "Architect: " + props.architect + "<br>"
+        }
+        if (props.yearBuilt) {
+          popup += "Year Built: " + props.yearBuilt + "<br>"
+        }
+        if (props.buildingType) {
+          popup += "Building Type: " + props.buildingType
+        }
 
-    // create Leaflet object with geometry data and add to map
-    var dataLayer = L.geoJson(data, {
-      // style: function(feature) {
-      //   return {
-      //     color: 'black',
-      //     weight: 1,
-      //     fillOpacity: 1,
-      //     fillColor: '#1f78b4'
-      //   };
-      // }
+				// bind a tooltip to layer with county-specific information
+				layer.bindPopup(popup, {
+				});
+}
     }).addTo(map);
   }
 
