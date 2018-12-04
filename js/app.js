@@ -84,21 +84,19 @@
 
     }).addTo(map);
 
-    addArchitectFilter(data);
+    addStyleFilter(data);
   }
 
   //function to populate architect filter dropdown with values from architect filter array
-  function addArchitectFilter(data) {
-    console.log(data);
-    console.log(architects);
+  function addStyleFilter(data) {
 
-    //for each value in architects array
-    $.each(architects, function(key, value) {
-         $('#architect-filter') //select the architect filter dropdown
-             .append($("<button></button>")  //append new button to dropdown
-             .attr("value",key)
-             .text(value));
-    });
+      // make the selection once
+      var dropdown = $('#style-filter');
+      //for each value in architects array
+      $.each(styles, function(key, value) {
+      // append a new element
+      dropdown.append("<a class='dropdown-item' value='"+ key +"' href='#''>" + value + "</a>")  //append new button to dropdown
+});
 
 }
 
