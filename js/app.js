@@ -18,7 +18,6 @@
   omnivore.csv('data/chicago-architecture.csv')
     .on('ready', function(e) {
       drawMap(e.target.toGeoJSON());
-      console.log(e);
     })
     .on('error', function(e) {
       console.log(e.error[0].message);
@@ -31,8 +30,14 @@
 
   function drawMap(data) {
     // create Leaflet object and add to map
-        console.log(data);
     var buildings = L.geoJson(data, {
+
+      style: function(feature) {
+        return {
+          color: "blue"
+        }
+      },
+
       onEachFeature: function(feature, layer) {
         var props = feature.properties
 
@@ -87,16 +92,27 @@
     addStyleFilter(data);
   }
 
-  //function to populate architect filter dropdown with values from architect filter array
+  //function to populate style filter dropdown with values from styles
   function addStyleFilter(data) {
-
-      // make the selection once
-      var dropdown = $('#style-filter');
-      //for each value in architects array
-      $.each(styles, function(key, value) {
+    console.log(data);
+    // make the selection once
+    var dropdown = $('#style-filter');
+    //for each value in styles array
+    $.each(styles, function(key, value) {
       // append a new element
-      dropdown.append("<a class='dropdown-item' value='"+ key +"' href='#''>" + value + "</a>")  //append new button to dropdown
-});
+      dropdown.append("<a class='dropdown-item' value='"+ key +"' href='#''>" + value + "</a>")  //append new dropdown item
+    });
+
+    $('#style-filter').click(function(e) {
+      attributeValue = $(this).val();
+      filterMap(data, attributeValue);
+      console.log("something changed");
+
+    });
+
+  }
+
+  function filterMap(buildings, attributeValue) {
 
 }
 
