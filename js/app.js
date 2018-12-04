@@ -24,6 +24,7 @@
       console.log(e.error[0].message);
     })
 
+  //create empty arrays to hold values for dropdown filter options
   var architects = []
   var styles = []
   var buildingTypes = []
@@ -34,48 +35,67 @@
     var buildings = L.geoJson(data, {
       onEachFeature: function(feature, layer) {
         var props = feature.properties
+
+        //empty string to hold popup info
         var popup = ""
+
+        //if building has a name, use that as popup header, then append address to next line
         if (props.buildingName) {
           popup += "<b>" + props.buildingName + "</b><br>" + props.Address + "<br>"
+          //if building does not have name, use address as popupheader
         } else {
           popup += "<b>" + props.Address + "</b><br>"
         }
+
+        //append buidling style to popup
         popup += "Primary Style: " + props.Style + "<br>"
+
+        //if building has an architect listed, append to popup
         if (props.architect) {
           popup += "Architect: " + props.architect + "<br>"
         }
+
+        //if building has year built listed, append to popup
         if (props.yearBuilt) {
           popup += "Year Built: " + props.yearBuilt + "<br>"
         }
+
+        //if building had buidling type listed, append to popup
         if (props.buildingType) {
           popup += "Building Type: " + props.buildingType
         }
 
-				// bind a tooltip to layer with county-specific information
+				// bind popup to layer
 				layer.bindPopup(popup, {
 				});
 
+        //if array for architect filter doesn't already have architect from a building in it, add to array
         if (!architects.includes(props.architect)) architects.push(props.architect)
         architects.sort();
 
+        //if array for style filter doesn't already have stylet from a building in it, add to array
         if (!styles.includes(props.Style)) styles.push(props.Style)
         styles.sort();
 
+        //if array for buildingType filter doesn't already have buildingType from a building in it, add to array
         if (!buildingTypes.includes(props.buildingType)) buildingTypes.push(props.buildingType)
         buildingTypes.sort();
 }
 
     }).addTo(map);
+
     addArchitectFilter(data);
   }
 
+  //function to populate architect filter dropdown with values from architect filter array
   function addArchitectFilter(data) {
     console.log(data);
     console.log(architects);
 
+    //for each value in architects array
     $.each(architects, function(key, value) {
-         $('#architect-filter')
-             .append($("<button></button>")
+         $('#architect-filter') //select the architect filter dropdown
+             .append($("<button></button>")  //append new button to dropdown
              .attr("value",key)
              .text(value));
     });
