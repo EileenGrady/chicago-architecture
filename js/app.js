@@ -71,25 +71,15 @@
 
   function addArchitectFilter(data) {
     console.log(data);
+    console.log(architects);
 
-    // select the map element
-    // $('#architect-filter-button')
-    //   .on('change', onchange)  // listen for change
-
-    // $('#nav-item dropdown architect');
-    // $.each(architects, function(i, p) {
-    //     $('#nav-item dropdown architect').append($('<dropdown-item></dropdown-item>').val(p).html(p));
-    // });
-
-
-    for(var i=0; i< architects.length;i++)
-    {
-    //creates option tag
-      jQuery('<button/>', {
-            value: architects[i],
-            html: architects[i]
-            }).appendTo('#nav-item dropdown architect'); //appends to select if parent div has id dropdown
-    }
+    $.each(architects, function(key, value) {
+         $('#architect-filter')
+             .append($("<button></button>")
+             .attr("value",key)
+             .text(value));
+    });
 
 }
+
 })();
