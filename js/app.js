@@ -3,7 +3,8 @@
   var map = L.map('map', {
     zoomSnap: .1,
     center: [41.862458, -87.635606],
-    zoom: 11
+    zoom: 11,
+    zoomControl: false
   });
 
   var tiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -30,7 +31,7 @@
 
   function drawMap(data) {
     // create Leaflet object and add to map
-    var buildings = L.geoJson(data, {
+    var buildingLayer = L.geoJson(data, {
 
       style: function(feature) {
         return {
@@ -107,13 +108,19 @@
       attributeValue = $(this).val();
       filterMap(data, attributeValue);
       console.log("something changed");
+      console.log(buildingLayer);
 
     });
 
   }
 
-  function filterMap(buildings, attributeValue) {
-
+  function filterMap(buildingLayer, attributeValue, layer) {
+    buildingLayer.eachLayer(function (layer) {
+      console.log(buildingLayer.feature.properties);
+//       if (layer.feature.properties != attributeValue) {
+//         map.removeLayer(layer)
+//       }
+});
 }
 
 })();
