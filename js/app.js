@@ -79,7 +79,7 @@
         if (!architects.includes(props.architect)) architects.push(props.architect)
         architects.sort();
 
-        //if array for style filter doesn't already have stylet from a building in it, add to array
+        //if array for style filter doesn't already have style from a building in it, add to array
         if (!styles.includes(props.Style)) styles.push(props.Style)
         styles.sort();
 
@@ -94,7 +94,7 @@
   }
 
   //function to populate style filter dropdown with values from styles
-  function addStyleFilter(data) {
+  function addStyleFilter(data, buildingLayer, layer) {
     console.log(data);
     // make the selection once
     var dropdown = $('#style-filter');
@@ -106,7 +106,7 @@
 
     $('#style-filter').click(function(e) {
       attributeValue = $(this).val();
-      filterMap(data, attributeValue);
+      filterMap(buildingLayer, attributeValue, layer);
       console.log("something changed");
       console.log(buildingLayer);
 
@@ -115,10 +115,10 @@
   }
 
   function filterMap(buildingLayer, attributeValue, layer) {
-    buildingLayer.eachLayer(function (layer) {
+    buildingLayer.eachLayer(function (layer) { //loop through each layer
       console.log(buildingLayer.feature.properties);
-//       if (layer.feature.properties != attributeValue) {
-//         map.removeLayer(layer)
+//       if (layer.feature.properties.Style != attributeValue) { //if the style does not match the style chosen from the dropdown filter
+//         buildingLayer.removeLayer(layer) //remove from map
 //       }
 });
 }
