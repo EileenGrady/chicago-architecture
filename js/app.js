@@ -37,9 +37,12 @@
   })
 
   //create empty arrays to hold values for dropdown filter options
-  var architects = []
-  var styles = []
-  var buildingTypes = []
+  var architects = [];
+  var styles = [];
+  var buildingTypes = [];
+
+  // empty layerGroup to hold markers we remove with filter
+  var tempLayers = L.layerGroup();
 
   function drawMap(data) {
     // create Leaflet object and add to map
@@ -104,38 +107,60 @@
 
     }).addTo(map);
 
-    addStyleFilter(data);
+    addStyleFilter(data, buildingLayer);
   }
 
   //function to populate style filter dropdown with values from styles
-  function addStyleFilter(data, buildingLayer, layer) {
+  function addStyleFilter(data, buildingLayer) {
     console.log(data);
     // make the selection once
     var dropdown = $('#style-filter');
+
+    // add an "All" option
+    dropdown.append("<a class='dropdown-item href='#''>all</a>")
     //for each value in styles array
     $.each(styles, function(key, value) {
       // append a new element
-      dropdown.append("<a class='dropdown-item' value='"+ key +"' href='#''>" + value + "</a>")  //append new dropdown item
+      dropdown.append("<a class='dropdown-item href='#''>" + value + "</a>")  //append new dropdown item
     });
 
-    $('#style-filter').click(function(e) {
-      attributeValue = $(this).val();
-      // filterMap(buildingLayer, attributeValue, layer);
-      console.log("something changed");
-      console.log(buildingLayer);
-      updateStyleDetails(styles, attributeValue)
+    $('.dropdown-menu a').click(function(e) {
+
+      // we can use the HTML of the anchor to match to the feature's Style prop
+      attributeValue = this.innerHTML
+      
+      console.log("selected attribute: ", attributeValue);
+      
+      filterMap(buildingLayer, attributeValue);
+
 
     });
 
   }
 
-  function filterMap(buildingLayer, attributeValue, layer) {
-    buildingLayer.eachLayer(function (layer) { //loop through each layer
-      console.log(buildingLayer.feature.properties);
-//       if (layer.feature.properties.Style != attributeValue) { //if the style does not match the style chosen from the dropdown filter
-//         buildingLayer.removeLayer(layer) //remove from map
-//       }
-});
+  function filterMap(buildingLayer, attributeValue) {
+   
+    // kinda hacky, but first add all tempLayer's layers back to buildingLayer
+    tempLayers.eachLayer(function(layer) {
+      buildingLayer.addLayer(layer)
+    });
+
+    // remove all layers from tempLayers
+    tempLayers.clearLayers()
+
+    // if user hasn't selected all
+    if(attributeValue != 'all') {
+      // loop through the building's layers
+      buildingLayer.eachLayer(function (layer) { //loop through each layer
+        // if the style isn't the selected one
+        if(layer.feature.properties['Style'] != attributeValue) {
+          // add the layer to tempLayers layerGroup
+          tempLayers.addLayer(layer);
+          // remove the layer from the buildings layerGroup
+          buildingLayer.removeLayer(layer)
+        }
+      });
+    }
 }
 
   function updateStyleDetails(styles, attributeValue){
