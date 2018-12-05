@@ -24,6 +24,18 @@
       console.log(e.error[0].message);
     })
 
+  //I want to use this data to update the side panel with details about the architecture style when a user selects one from the dropdown
+  //Not sure how to pull the data out of this function to use though
+  //use papaparse to load styles.csv
+  Papa.parse('data/styles.csv', {
+    download: true,
+    header: true,
+    complete: function(styles) {
+      console.log(styles)
+      updateStyleDetails(styles) //call this here to pull the data out?
+    }
+  })
+
   //create empty arrays to hold values for dropdown filter options
   var architects = []
   var styles = []
@@ -33,11 +45,13 @@
     // create Leaflet object and add to map
     var buildingLayer = L.geoJson(data, {
 
-      style: function(feature) {
-        return {
-          color: "blue"
-        }
-      },
+      // pointToLayer: function(feature, latlng) {
+      //   var icon = L.icon({
+      //     iconUrl: "MAKI/building-11.svg",
+      //     iconSize: 30
+      //     // tooltipAnchor: [0, -15] // Center of your icon is [0,0]
+      //   });
+      // },
 
       onEachFeature: function(feature, layer) {
         var props = feature.properties
@@ -47,13 +61,13 @@
 
         //if building has a name, use that as popup header, then append address to next line
         if (props.buildingName) {
-          popup += "<b>" + props.buildingName + "</b><br>" + props.Address + "<br>"
+          popup += "<h6>" + props.buildingName + "</h6><br>" + props.Address + "<br>"
           //if building does not have name, use address as popupheader
         } else {
-          popup += "<b>" + props.Address + "</b><br>"
+          popup += "<h6>" + props.Address + "</h6><br>"
         }
 
-        //append buidling style to popup
+        //append building style to popup
         popup += "Primary Style: " + props.Style + "<br>"
 
         //if building has an architect listed, append to popup
@@ -106,9 +120,10 @@
 
     $('#style-filter').click(function(e) {
       attributeValue = $(this).val();
-      filterMap(buildingLayer, attributeValue, layer);
+      // filterMap(buildingLayer, attributeValue, layer);
       console.log("something changed");
       console.log(buildingLayer);
+      updateStyleDetails(styles, attributeValue)
 
     });
 
@@ -122,5 +137,12 @@
 //       }
 });
 }
+
+  function updateStyleDetails(styles, attributeValue){
+    //match the attribute value to a style in the styles object
+    //create new HTML element
+    //append (or replace the existing one?) it to the side panel
+    //then call within the addStyleFilter function so that it updates when a user selects a style
+  }
 
 })();

@@ -16,11 +16,15 @@ h1 {
 }
 
 @media (min-width: 992px) {
-  h1 {font-size:2.5rem;} /*1rem = 16px*/
+  h1 {font-size:2rem;} /*1rem = 16px*/
 }
 
 @media (min-width: 1200px) {
   h1 {font-size:3rem;} /*1rem = 16px*/
+}
+
+h6 {
+  margin-bottom: 0px;
 }
 
 .subtitle {
@@ -36,7 +40,7 @@ h1 {
 }
 
 @media (min-width: 992px) {
-  .subtitle {font-size:1.75rem;} /*1rem = 16px*/
+  .subtitle {font-size:1.5rem;} /*1rem = 16px*/
 }
 
 @media (min-width: 1200px) {
@@ -48,17 +52,33 @@ h1 {
   text-align: center;
 } */
 
-.text-muted {
-  color:
+/* #sidebar {
+  display: block;
+  width: 250px;
+  height: 100%;
+  max-width: 100%;
+  float: left;
 }
 
-.container {
-  outline: gray;
+.sidebar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 #map {
-  width: 100%;
+  width: auto;
+  height: 100%;
+} */
+
+
+#map {
+  max-height: inherit;
   height: 600px;
+}
+
+.card {
+  height: auto;
 }
 
 .scroll-menu {
