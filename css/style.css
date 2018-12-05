@@ -73,7 +73,7 @@ h6 {
 
 
 #map {
-  max-height: inherit;
+  /* max-height: inherit; */
   height: 600px;
 }
 
