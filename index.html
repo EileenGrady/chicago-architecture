@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Chicago Architecture</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor\bootstrap\css\bootstrap.min.css" rel="stylesheet">
@@ -15,12 +15,13 @@
     <!-- Custom styles for this template -->
     <link href='css/style.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cardo|Libre+Franklin" rel="stylesheet">
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#"><h1>Chicago Architecture Data<span class="subtitle .d-none .d-md-block .d-xl-none">: Exploring the city's structural history</span></h1></a>
+      <a class="navbar-brand" href="https://chicagoarchitecturedata.com/" target ="_blank"><h1>Chicago Architecture Data<span class="subtitle .d-none .d-md-block .d-xl-none">: Exploring the city's structural history</span></h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,10 +44,14 @@
     <div class="col-md-3 .d-none .d-md-block .d-xl-none">
     <div class="card" id="style-card">
       <img class="card-img-top" src="/images/bridgeport-banner.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">A map of interesting buildings in Chicago</h5>
+      <div class="photo-credit">
+        <p id="credit">Photo Credit: John Morris</p>
+      </div>
+      <div class="card-body p-top-0">
+        <h5 class="card-title">A map of interesting buildings in Chicago.</h5>
         <h6 class="card-subtitle mb-2 text-muted"></h6>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" id="locate-me">Find my location on the map!</button>
+        <br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block .d-none .d-md-block .d-xl-none" id="locate-me">Find my location on the map!</button>
       </div>
     </div>
   </div>
@@ -55,21 +60,6 @@
     </div>
   </div>
 </div>
-
-
-
-    <!-- <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-4">
-  Some stuff
-  </div>
-<div class="col-xs-8"> -->
-    <!-- <div id='map'></div> -->
-    <!-- </div>
-  </div>
-  </div> -->
-
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

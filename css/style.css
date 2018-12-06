@@ -1,11 +1,13 @@
 body {
   min-height: 75rem;
-  /* color: "#fff"; */
+  Font-Family: 'Libre Franklin', Sans-Serif;
+  Font-Size: 17px;
 }
 
 h1 {
   font-size:1rem;
-} /*1rem = 16px*/
+  Font-Family: 'Cardo', Serif;
+}
 
 @media (min-width: 544px) {
   h1 {font-size:1.5rem;} /*1rem = 16px*/
@@ -27,6 +29,16 @@ h6 {
   margin-bottom: 0px;
 }
 
+.photo-credit {
+  margin-bottom: 0px;
+}
+
+#credit {
+  font-size: .75rem;
+}
+
+
+
 .subtitle {
   font-size:0rem;
 } /*1rem = 16px*/
@@ -44,33 +56,8 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-  .subtitle {font-size:2.25rem;} /*1rem = 16px*/
+  .subtitle {font-size:2rem;} /*1rem = 16px*/
 }
-
-/* h1 {
-  font-size: 3rem;
-  text-align: center;
-} */
-
-/* #sidebar {
-  display: block;
-  width: 250px;
-  height: 100%;
-  max-width: 100%;
-  float: left;
-}
-
-.sidebar-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-#map {
-  width: auto;
-  height: 100%;
-} */
-
 
 #map {
   /* max-height: inherit; */
