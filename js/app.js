@@ -69,7 +69,7 @@ map.on('locationfound', onLocationFound);
         }
 
         //append building style to popup
-        popup += "<span class='popup-body'>Architectural Style: " + props.Style + "</span><br>"
+        popup += "<span class='popup-body'>Architecture Style: " + props.Style + "</span><br>"
 
         //if building has an architect listed, append to popup
         if (props.architect) {

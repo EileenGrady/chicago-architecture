@@ -65,8 +65,8 @@ h6 {
   h6 {font-size:1.1rem;}
 }
 
-#credit {
-  font-size: .75rem;
+.photo-credit {
+  font-size: .7rem;
 }
 
 /* set font size to 0 at smallest viewport to make disappear */
