@@ -15,6 +15,17 @@
 
   tiles.addTo(map);
 
+  $('#locate-me').on('click', function() {
+   map.locate({setView: true, maxZoom: 16});
+  });
+
+  function onLocationFound(e) {
+    var myLocation = L.marker(e.latlng).addTo(map)
+        .bindPopup("You are here").openPopup();
+}
+
+map.on('locationfound', onLocationFound);
+
   // use omnivore to load the CSV data
   omnivore.csv('data/chicago-architecture.csv')
     .on('ready', function(e) {
@@ -23,17 +34,6 @@
     .on('error', function(e) {
       console.log(e.error[0].message);
     })
-
-  //I want to use this data to update the side panel with details about the architecture style when a user selects one from the dropdown
-  //Not sure how to pull the data out of this function to use though
-  //use papaparse to load styles.csv
-  // Papa.parse('data/styles.csv', {
-  //   download: true,
-  //   header: true,
-  //   complete: function(data) {
-  //     getDataOut(data) //call this here to pull the data out?
-  //   }
-  // })
 
   //create empty arrays to hold values for dropdown filter options
   var architects = []
@@ -312,7 +312,7 @@ var styleData = {
 
     //loop through each style in styleData
     for (var style in styleData) {
-      if (attributeValue == 'all') { //if filter set to all
+      if (attributeValue == 'all') { //if filter set to all or style doesn't have image or details attached
         $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
         $('.card-subtitle').text('') //keep style details blank
       } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
