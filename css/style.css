@@ -30,19 +30,19 @@ h5 {
 }
 
 @media (min-width: 544px) {
-  h5 {font-size: 1.2rem;}
+  h5 {font-size: 1.1rem;}
 }
 
 @media (min-width: 768px) {
-  h5 {font-size:1.1rem;}
+  h5 {font-size:1.4rem;}
 }
 
 @media (min-width: 992px) {
-  h5 {font-size:1.3rem;}
+  h5 {font-size:1.2rem;}
 }
 
 @media (min-width: 1200px) {
-  h5 {font-size:1.5rem;}
+  h5 {font-size:1.4rem;}
 }
 
 h6 {
@@ -54,20 +54,16 @@ h6 {
 }
 
 @media (min-width: 768px) {
-  h6 {font-size:.9rem;}
+  h6 {font-size:1.2rem;}
 }
 
 @media (min-width: 992px) {
-  h6 {font-size:1rem;}
+  h6 {font-size:1.3rem;}
 }
 
 @media (min-width: 1200px) {
   h6 {font-size:1.1rem;}
 }
-
-/* .photo-credit {
-  margin-bottom: 0px;
-} */
 
 #credit {
   font-size: .75rem;
@@ -92,6 +88,49 @@ h6 {
 
 @media (min-width: 1200px) {
   .subtitle {font-size:2rem;}
+}
+
+.popup-header {
+  font-size: .8rem;
+  Font-Family: 'Cardo', Serif;
+  font-weight: bold;
+}
+
+@media (min-width: 544px) {
+  .popup-header {font-size:1rem;}
+}
+
+@media (min-width: 768px) {
+  .popup-header {font-size:1rem;}
+}
+
+@media (min-width: 992px) {
+  .popup-header {font-size:1rem;}
+}
+
+@media (min-width: 1200px) {
+  .popup-header {font-size:1rem;}
+}
+
+.popup-body {
+  font-size: .6rem;
+  Font-Family: 'Libre Franklin', Sans-Serif;
+}
+
+@media (min-width: 544px) {
+  .popup-body {font-size:.8rem;}
+}
+
+@media (min-width: 768px) {
+  .popup-body {font-size:.8rem;}
+}
+
+@media (min-width: 992px) {
+  .popup-body {font-size:.8rem;}
+}
+
+@media (min-width: 1200px) {
+  .popup-body {font-size:.8rem;}
 }
 
 #map {

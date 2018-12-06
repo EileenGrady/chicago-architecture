@@ -62,28 +62,28 @@ map.on('locationfound', onLocationFound);
 
         //if building has a name, use that as popup header, then append address to next line
         if (props.buildingName) {
-          popup += "<h6>" + props.buildingName + "</h6><br>" + props.Address + "<br>"
+          popup += "<span class='popup-header'>" + props.buildingName + "</span><br><span class='popup-body'>" + props.Address + "</span><br>"
           //if building does not have name, use address as popupheader
         } else {
-          popup += "<h6>" + props.Address + "</h6><br>"
+          popup += "<span class='popup-header'>" + props.Address + "</span><br>"
         }
 
         //append building style to popup
-        popup += "Primary Style: " + props.Style + "<br>"
+        popup += "<span class='popup-body'>Architectural Style: " + props.Style + "</span><br>"
 
         //if building has an architect listed, append to popup
         if (props.architect) {
-          popup += "Architect: " + props.architect + "<br>"
+          popup += "<span class='popup-body'>Architect: " + props.architect + "</span><br>"
         }
 
         //if building has year built listed, append to popup
         if (props.yearBuilt) {
-          popup += "Year Built: " + props.yearBuilt + "<br>"
+          popup += "<span class='popup-body'>Year Built: " + props.yearBuilt + "</span><br>"
         }
 
         //if building had buidling type listed, append to popup
         if (props.buildingType) {
-          popup += "Building Type: " + props.buildingType
+          popup += "<span class='popup-body'>Building Type: " + props.buildingType + "</span>"
         }
 
 				// bind popup to layer
