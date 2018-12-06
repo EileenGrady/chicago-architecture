@@ -2,8 +2,8 @@
 
   var map = L.map('map', {
     zoomSnap: .1,
-    center: [41.862458, -87.635606],
-    zoom: 11,
+    center: [41.894590, -87.656833],
+    zoom: 13,
     zoomControl: false
   });
 
@@ -15,10 +15,12 @@
 
   tiles.addTo(map);
 
+  //select locate button, leaflet .locate function when button is pressed
   $('#locate-me').on('click', function() {
    map.locate({setView: true, maxZoom: 16});
   });
 
+  //bind popup at user location that says, "you are here"
   function onLocationFound(e) {
     var myLocation = L.marker(e.latlng).addTo(map)
         .bindPopup("You are here").openPopup();
@@ -45,14 +47,6 @@ map.on('locationfound', onLocationFound);
   function drawMap(data) {
     // create Leaflet object and add to map
     var buildingLayer = L.geoJson(data, {
-
-      // pointToLayer: function(feature, latlng) {
-      //   var icon = L.icon({
-      //     iconUrl: "MAKI/building-11.svg",
-      //     iconSize: 30
-      //     // tooltipAnchor: [0, -15] // Center of your icon is [0,0]
-      //   });
-      // },
 
       onEachFeature: function(feature, layer) {
         var props = feature.properties
