@@ -102,6 +102,14 @@ map.on('locationfound', onLocationFound);
         }
 
         if (props.imageLink) {
+
+          // sharp('input.jpg')
+          //   .rotate()
+          //   .resize(200)
+          //   .toBuffer()
+          //   .then( data => ... )
+          //   .catch( err => ... );
+
           popup += "<img src=' " + props.imageLink + "'>"
         }
 
