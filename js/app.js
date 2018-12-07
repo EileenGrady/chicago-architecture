@@ -32,10 +32,31 @@ map.on('locationfound', onLocationFound);
   omnivore.csv('data/chicago-architecture.csv')
     .on('ready', function(e) {
       drawMap(e.target.toGeoJSON());
+
+      // Papa.parse('data/imageLinks.csv', {
+      //   download: true,
+      //   header: true,
+      //   complete: function(data) {
+      //
+      //     console.log('data: ', data);
+      //     // processData(counties, data);
+      //   }
+      // })
+
     })
     .on('error', function(e) {
       console.log(e.error[0].message);
     })
+
+    // Papa.parse('data/imageLinks.csv', {
+    //   download: true,
+    //   header: true,
+    //   complete: function(data) {
+    //
+    //     console.log('data: ', data);
+    //     processData(buildingLayer, data);
+    //   }
+    // })
 
   //create empty arrays to hold values for dropdown filter options
   var architects = []
@@ -77,7 +98,11 @@ map.on('locationfound', onLocationFound);
 
         //if building had buidling type listed, append to popup
         if (props.buildingType) {
-          popup += "<span class='popup-body'>Building Type: " + props.buildingType + "</span>"
+          popup += "<span class='popup-body'>Building Type: " + props.buildingType + "</span><br>"
+        }
+
+        if (props.imageLink) {
+          popup += "<img src=' " + props.imageLink + "'>"
         }
 
 				// bind popup to layer
@@ -100,7 +125,39 @@ map.on('locationfound', onLocationFound);
     }).addTo(map);
 
     addStyleFilter(data, buildingLayer);
+      console.log(buildingLayer);
   }
+
+
+  // Papa.parse('data/imageLinks.csv', {
+  //   download: true,
+  //   header: true,
+  //   complete: function(imageData) {
+  //
+  //     console.log('data: ', imageData);
+  //     processData(imageData);
+  //   }
+  // })
+
+  // function processData(data, imageData) {
+  //
+  //   for (var i = 0; i < data.features.length; i++){
+  //
+  //     var props = data.features[i].properties;
+  //
+  //     for (var j = 0; i < imageData.data.length; j++){
+  //       if (props.matchAddress === imageData.data[j].address) {
+  //
+  //         data.features[i].properties = imageData.data[j]
+  //
+  //         break;
+  //
+  //         console.log(data);
+  //       }
+  //     }
+  //   }
+  //
+  // }
 
   //function to populate style filter dropdown with values from styles
   function addStyleFilter(data, buildingLayer, styleData) {
