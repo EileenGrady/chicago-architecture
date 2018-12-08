@@ -33,30 +33,10 @@ map.on('locationfound', onLocationFound);
     .on('ready', function(e) {
       drawMap(e.target.toGeoJSON());
 
-      // Papa.parse('data/imageLinks.csv', {
-      //   download: true,
-      //   header: true,
-      //   complete: function(data) {
-      //
-      //     console.log('data: ', data);
-      //     // processData(counties, data);
-      //   }
-      // })
-
     })
     .on('error', function(e) {
       console.log(e.error[0].message);
     })
-
-    // Papa.parse('data/imageLinks.csv', {
-    //   download: true,
-    //   header: true,
-    //   complete: function(data) {
-    //
-    //     console.log('data: ', data);
-    //     processData(buildingLayer, data);
-    //   }
-    // })
 
   //create empty arrays to hold values for dropdown filter options
   var architects = []
@@ -103,14 +83,9 @@ map.on('locationfound', onLocationFound);
 
         if (props.imageLink) {
 
-          // sharp('input.jpg')
-          //   .rotate()
-          //   .resize(200)
-          //   .toBuffer()
-          //   .then( data => ... )
-          //   .catch( err => ... );
-
-          popup += "<img src=' " + props.imageLink + "'>"
+          popup += "<img src=' " + props.imageLink + "'><br>Photo Credit: " + "<a href = ' " +
+          props.photoCreditLink +
+          " ' target = '_blank'>" + props.photoCredit + "</a>"
         }
 
 				// bind popup to layer
@@ -135,37 +110,6 @@ map.on('locationfound', onLocationFound);
     addStyleFilter(data, buildingLayer);
       console.log(buildingLayer);
   }
-
-
-  // Papa.parse('data/imageLinks.csv', {
-  //   download: true,
-  //   header: true,
-  //   complete: function(imageData) {
-  //
-  //     console.log('data: ', imageData);
-  //     processData(imageData);
-  //   }
-  // })
-
-  // function processData(data, imageData) {
-  //
-  //   for (var i = 0; i < data.features.length; i++){
-  //
-  //     var props = data.features[i].properties;
-  //
-  //     for (var j = 0; i < imageData.data.length; j++){
-  //       if (props.matchAddress === imageData.data[j].address) {
-  //
-  //         data.features[i].properties = imageData.data[j]
-  //
-  //         break;
-  //
-  //         console.log(data);
-  //       }
-  //     }
-  //   }
-  //
-  // }
 
   //function to populate style filter dropdown with values from styles
   function addStyleFilter(data, buildingLayer, styleData) {
@@ -214,139 +158,162 @@ var styleData = {
     style: "American Four Square",
     description: "A simple and symmetrical reaction to ornate and decorative Victorian-era styles, often credited as evolving from the Prairie style pioneered by Frank Lloyd Wright. The American Four Square was a popular mail order style and kit home. They typically feature open floor plans, plenty of fireplaces, and a square and symmetrical shape. This style is always two stories tall.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/647-w-wellington-avenue-1417969718.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   ArtDeco: {
     style: "Art Deco",
     description: "Modern style with emphasis on stark and simple lines, bold colors and shapes, and motifs featuring geometric, floral, or animal designs. Art Deco was part of the modern design movement that shunned excessive ornament to present a look of refinement and elegance.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1911-n-western-avenue-1462741534.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   ArtDecoModerne: {
     style: "Art Deco/Moderne",
     description: "Similar to Art Deco, a modernist design that emphasized long horizontal lines, simplicity, rounded corners, and a futuristic feel.",
     url: "https://chicagoarchitecturedata.com/static/images/style_images/art-moderne-1411936832.jpg.600x400_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   ArtNoveau: {
     style: "Art-Noveau",
     description: "A modernistic design that served as a precursor to Art Deco. It was a reaction against precise and strictly ordained geometry and emphasis on classical elements. The style represented an experimentation with curved elements, artistic interpretation of everyday elements, and a futuristic look.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1439-w-18th-street-1416700518.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Baroque: {
     style: "Baroque",
     description: "",
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/17101180110000.jpg",
-    photoCredit: "Cook County Assessor Photo"
+    photoCredit: "Cook County Assessor Photo",
+    photoCreditLink: "http://www.cookcountyassessor.com/"
   },
   Bungalow: {
     style: "Bungalow",
     description: "A single story detached house, typically featuring a hipped roof with dormer. Although many were frame built, most Chicago bungalows are constructed of brick, and frequently feature a large front porch or sunroom.",
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/13041130160000.jpg",
-    photoCredit: "Cook County Assessor Photo"
+    photoCredit: "Cook County Assessor Photo",
+    photoCreditLink: "http://www.cookcountyassessor.com/"
   },
   ChicagoSchool: {
     style: "Chicago School",
     description: "A broad group of buildings which can be of different architectural styles, built between the 1880s and 1890s. They were typically constructed of steel frame with exterior masonry.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/400-e-43rd-street-1413426014.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Classical: {
     style: "Classical",
     description: "Also called Neoclassical or Classical Revival, it's a style based on the architecture of ancient Greece and Rome. Commonly used for churches, schools, and other public buildings during the late 19th and early 20th centuries.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/2869-w-cermak-road-1447379539.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Craftsman: {
     style: "Craftsman",
     description: "A style influenced by the bungalow and the Arts and Crafts movement. It has informal floor plans, is usually asymmetrical, and embraced craftsman, honesty in materials, and restrained design. It is often viewed as a reaction to the eccentrically designed Victorian-era styles.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/319-e-55th-street-1410220223.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Eastlake: {
     style: "Eastlake",
     description: "Also known as the Stick Style, this form of building features elaborate woodwork and ornament. It was named after Charles Eastlake, an architect who advocated the use of wooden decoration and trim.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/921-w-armitage-avenue-1414213067.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Egyptian: {
     style: "Egyptian",
     description: "Often considered a branch of the Art Deco style, the arrival of Egyptian Revival architecture in the early 20th century was a result of the 1922 discovery of Tutankhamun's tomb. Because most building projects across Chicago and the nation came to a halt after the Wall Street Crash of 1929, its popularity lasted only a few years, and there aren't many surviving buildings in this style.",
     url: "https://chicagoarchitecturedata.com/static/images/style_images/egyptian-1416072813.jpg.600x400_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Gothic: {
     style: "Gothic",
     description: "A style influenced by the rising interest in medieval churches of France and Germany, it emphasizes verticality, tall and narrow forms, and decorative ornament.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/35-w-kinzie-street-1419914142.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Italianate: {
     style: "Italianate",
     description: "A style influenced by Italian villas, Italianate was one of the most popular styles of the Victorian era. It emphasizes verticality, symmetry, and a stately appearance. Usually features large cornice bracketing, and often has curved windowe and stone trim with floral patterns.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1249-w-18th-street-1416701813.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Modern: {
     style: "Modern",
     description: "",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1634-w-polk-street-1447725744.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   NeoGrec: {
     style: "Neo-Grec",
     description: "",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/3325-s-giles-avenue-1413257433.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Prarie: {
     style: "Prairie",
     description: "As the name suggests, the Prairie School of architecture originated in the midwest. It is often characterized by flowing horizontal lines and quality and craftsmanship in materials. In part a reaction to disdain for the near total Classical and European styles of the 1893 World's Columbian Exposition, many architects wanted a more organic and American architectural style. It shares many similarities with the Arts and Crafts movement, emphasizing quality handmade materials and not mass produced materials.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/5757-s-woodlawn-avenue-1418149511.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   QueenAnne: {
     style: "Queen Anne",
     description: "A loosely defined style type, applied broadly to a range of architecture at tail end of the Victorian Era. It is often characterized by eccentric ornament, an asymmetrical layout and footprint, and generally emphasized proportions and trim.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/2228-n-kedzie-boulevard-1420398479.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Romanesque: {
     style: "Romanesque",
     description: "Style in which buildings and houses consist of tall windows, short columns, and semi-circular angles. Usually features a large front pediment and built from stone or brick.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1215-w-18th-street-1416198195.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   SecondEmpire: {
     style: "Second Empire",
     description: "A Victorian-era style that gained popularity during the Second French Empire. The American and Chicago version features traits often seen in other Victorian styles (Italianate and Queen Anne). The most notable distinction is that Second Empire buildings almost always have a mansard roof, and they are usually symmetrical.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1501-w-18th-street-1416700121.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   SecondRenaissanceRevival: {
     style: "Second Renaissance Revival",
     description: "Second Renaissance Revival is similar to Greco-Roman classical styles with columns, round arches, and decorative cornice. Usually each floor uniquely decorated.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/2342-n-kedzie-boulevard-1416692301.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   SpanishRevival: {
     style: "Spanish Revival",
     description: "Popularized in the early 20th century, it shares many traits with Moorish, Romanesque, and Colonial Revival styles. Typically features a terra cotta or clay exterior, with intricately designed ornament, twisted columns, and bas-relief portraits of important figures.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/100-n-central-park-drive-1446941336.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Sullivanesque: {
     style: "Sullivanesque",
     description: "A subgroup of the Prairie Style, the Sullivanesque style is named for one of the most important figures in architecture, Louis Sullivan. The Sullivanesque Style is typically identified by a lack of historical ornament, a low-pitched or flat roof, and geometric forms and shapes. Sullivanesque ornamentation is circular and floral, whereas the other subgroups of the Prairie Style, particularly practiced by Frank Lloyd Wright, are angular and linear in nature.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/40-e-55th-street-1410219898.jpg.800x800_q85_upscale.jpg",
-    photoCredit: "John Morris"
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   },
   Tudor: {
     style: "Tudor",
     description: "",
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/13024200380000.jpg",
-    photoCredit: "Cook County Assessor Photo"
+    photoCredit: "Cook County Assessor Photo",
+    photoCreditLink: "http://www.cookcountyassessor.com/"
   }
 }
 
@@ -367,6 +334,7 @@ var styleData = {
       } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
         $('#credit').text('Photo Credit: ' + styleData[style].photoCredit) //update photoCredit for representative image for selected style
+        $('a class photo-credit').text(styleData[style].photoCreditLink)
         $('.card-subtitle').text(styleData[style].description) //update style details to details for selected style
       }
     }
