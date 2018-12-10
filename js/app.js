@@ -256,14 +256,14 @@ var styleData = {
   },
   Modern: {
     style: "Modern",
-    description: "",
+    description: "Emerging in the first half of the 20th century, modern architecture was guided by the idea that form should follow function. The style rejected ornament in favor of minimalism, and embraced innovative building materials of the time including glass, steel, and reinforced concrete.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/1634-w-polk-street-1447725744.jpg.800x800_q85_upscale.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
   },
   NeoGrec: {
     style: "Neo-Grec",
-    description: "",
+    description: "A Neoclassical revival style of the mid-to-late 19th century. This style aligns with the American Renaissance, a period characterized by renewed national self-confidence. ",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/3325-s-giles-avenue-1413257433.jpg.800x800_q85_upscale.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
@@ -319,7 +319,7 @@ var styleData = {
   },
   Tudor: {
     style: "Tudor",
-    description: "",
+    description: "This architecture style refers buildings built during a period of the Tudor dynasty, roughly from 1500 to 1560. Tudor style experienced a revival and became very popular in the US in the early 1900s. Made of brick or stone and embellished with decorative half-timbering, these buildings often feature steep gabled roofs and elaborate chimneys.",
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/13024200380000.jpg",
     photoCredit: "Cook County Assessor Photo",
     photoCreditLink: "http://www.cookcountyassessor.com/"
