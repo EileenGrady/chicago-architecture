@@ -81,12 +81,10 @@ map.on('locationfound', onLocationFound);
           popup += "<span class='popup-body'>Building Type: " + props.buildingType + "</span><br>"
         }
 
-        if (props.imageLink) {
-
-          popup += "<img src=' " + props.imageLink + "'><br>Photo Credit: " + "<a href = ' " +
-          props.photoCreditLink +
-          " ' target = '_blank'>" + props.photoCredit + "</a>"
-        }
+        //append building photo and photo credit to popup
+        popup += "<img height=200 src=' " + props.imageLink + "'><br>Photo Credit: " + "<a href = ' " +
+        props.photoCreditLink +
+        " ' target = '_blank'>" + props.photoCredit + "</a>"
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
@@ -327,14 +325,14 @@ var styleData = {
 
     //loop through each style in styleData
     for (var style in styleData) {
-      if (attributeValue == 'all') { //if filter set to all or style doesn't have image or details attached
+      if (attributeValue == 'all') { //if filter set to all
         $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
         $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
         $('.card-subtitle').text('') //keep style details blank
       } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
-        $('#credit').text('Photo Credit: ' + styleData[style].photoCredit) //update photoCredit for representative image for selected style
-        $('a class photo-credit').text(styleData[style].photoCreditLink)
+        $('.photo-credit-link').attr('href', styleData[style].photoCreditLink)//update photoCredit link for representative image for selected style
+        $('.photo-credit-link').text(styleData[style].photoCredit) //update photoCredit for representative image for selected style
         $('.card-subtitle').text(styleData[style].description) //update style details to details for selected style
       }
     }

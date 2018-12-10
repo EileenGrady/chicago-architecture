@@ -94,6 +94,7 @@ h6 {
   font-size: .8rem;
   Font-Family: 'Cardo', Serif;
   font-weight: bold;
+  text-align: center;
 }
 
 @media (min-width: 544px) {
@@ -101,15 +102,15 @@ h6 {
 }
 
 @media (min-width: 768px) {
-  .popup-header {font-size:1rem;}
+  .popup-header {font-size:1rem; text-align:center;}
 }
 
 @media (min-width: 992px) {
-  .popup-header {font-size:1rem;}
+  .popup-header {font-size:1rem; text-align:center;}
 }
 
 @media (min-width: 1200px) {
-  .popup-header {font-size:1rem;}
+  .popup-header {font-size:1rem; text-align:center;}
 }
 
 .popup-body {
