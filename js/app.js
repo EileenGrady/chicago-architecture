@@ -97,6 +97,7 @@ map.on('locationfound', onLocationFound);
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
+          autoPan: true
 				});
 
         //if array for architect filter doesn't already have architect from a building in it, add to array
@@ -191,13 +192,6 @@ var styleData = {
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
   },
-  // Baroque: {
-  //   style: "Baroque",
-  //   description: "",
-  //   url: "https://chicagoarchitecturedata.com/static/images/assessor_images/17101180110000.jpg",
-  //   photoCredit: "Cook County Assessor Photo",
-  //   photoCreditLink: "http://www.cookcountyassessor.com/"
-  // },
   Bungalow: {
     style: "Bungalow",
     description: "A single story detached house, typically featuring a hipped roof with dormer. Although many were frame built, most Chicago bungalows are constructed of brick, and frequently feature a large front porch or sunroom.",
@@ -340,6 +334,10 @@ var styleData = {
         $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
         $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
         $('.card-subtitle').text('') //keep style details blank
+      // } else if (attributeValue == 'uncategorized') {
+      //   $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
+      //   $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
+      //   $('.card-subtitle').text('') //keep style details blank
       } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
         $('.photo-credit-link').attr('href', styleData[style].photoCreditLink)//update photoCredit link for representative image for selected style
