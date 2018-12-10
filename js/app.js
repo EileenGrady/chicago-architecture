@@ -64,27 +64,36 @@ map.on('locationfound', onLocationFound);
         }
 
         //append building style to popup
-        popup += "<span class='popup-body'>Architecture Style: " + props.Style + "</span><br>"
+        popup += "<span class='popup-body'>Style: " + props.Style + "</span><br>"
 
         //if building has an architect listed, append to popup
         if (props.architect) {
-          popup += "<span class='popup-body'>Architect: " + props.architect + "</span><br>"
+          popup += "<span class='popup-body'>Designed by " + props.architect + "</span><br>"
         }
 
         //if building has year built listed, append to popup
         if (props.yearBuilt) {
-          popup += "<span class='popup-body'>Year Built: " + props.yearBuilt + "</span><br>"
+          popup += "<span class='popup-body'>Built in " + props.yearBuilt + "</span><br>"
         }
 
         //if building had buidling type listed, append to popup
         if (props.buildingType) {
-          popup += "<span class='popup-body'>Building Type: " + props.buildingType + "</span><br>"
+          popup += "<span class='popup-body'>" + props.buildingType + "</span><br>"
         }
 
         //append building photo and photo credit to popup
-        popup += "<img height=200 src=' " + props.imageLink + "'><br>Photo Credit: " + "<a href = ' " +
+        popup +=
+        "<a href = ' " +
+        props.webLink +
+        " ' target = '_blank'>" +
+        "<img height=200 src=' " +
+        props.imageLink +
+        "'></a><br>Photo Credit: " +
+        "<a href = ' " +
         props.photoCreditLink +
-        " ' target = '_blank'>" + props.photoCredit + "</a>"
+        " ' target = '_blank'>" +
+        props.photoCredit +
+        "</a>"
 
 				// bind popup to layer
 				layer.bindPopup(popup, {

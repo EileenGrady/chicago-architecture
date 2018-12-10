@@ -1,7 +1,15 @@
+html {
+  height: 100%;
+}
+
 body {
-  min-height: 75rem;
+  height: 100%
   Font-Family: 'Libre Franklin', Sans-Serif;
   Font-Size: 17px;
+}
+
+.min-100 {
+    min-height: 100%;
 }
 
 h1 {
@@ -132,6 +140,18 @@ h6 {
 
 @media (min-width: 1200px) {
   .popup-body {font-size:.8rem;}
+}
+
+a {
+  color: #76c5cc;
+}
+
+a:hover {
+  color: #76c5cc;
+}
+
+.leaflet-popup-content {
+  text-align: center;
 }
 
 #map {
