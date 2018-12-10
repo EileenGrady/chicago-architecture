@@ -154,6 +154,10 @@ a:hover {
   color: #76c5cc;
 }
 
+.card-body {
+  padding-top: 0;
+}
+
 #map {
   height: 650px;
 }

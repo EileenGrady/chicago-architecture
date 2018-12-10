@@ -319,7 +319,7 @@ var styleData = {
     photoCreditLink: "http://www.cookcountyassessor.com/"
   },
   uncategorized: {
-    style: "uncategorized",
+    style: "Unclassified Style",
     description: "These buildings are currently unclassified.",
     url: "/images/bridgeport-banner.jpg",
     photoCredit: "John Morris",
