@@ -317,8 +317,16 @@ var styleData = {
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/13024200380000.jpg",
     photoCredit: "Cook County Assessor Photo",
     photoCreditLink: "http://www.cookcountyassessor.com/"
+  },
+  uncategorized: {
+    style: "uncategorized",
+    description: "These buildings are currently unclassified.",
+    url: "/images/bridgeport-banner.jpg",
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/"
   }
 }
+
 
   function updateStyleDetails(attributeValue) {
 
@@ -334,10 +342,6 @@ var styleData = {
         $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
         $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
         $('.card-subtitle').text('') //keep style details blank
-      // } else if (attributeValue == 'uncategorized') {
-      //   $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
-      //   $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
-      //   $('.card-subtitle').text('') //keep style details blank
       } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
         $('.photo-credit-link').attr('href', styleData[style].photoCreditLink)//update photoCredit link for representative image for selected style
