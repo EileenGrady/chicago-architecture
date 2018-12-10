@@ -77,23 +77,23 @@ map.on('locationfound', onLocationFound);
         }
 
         //if building had buidling type listed, append to popup
-        if (props.buildingType) {
-          popup += "<span class='popup-body'>" + props.buildingType + "</span><br>"
-        }
+        // if (props.buildingType) {
+        //   popup += "<span class='popup-body'>" + props.buildingType + "</span><br>"
+        // }
 
         //append building photo and photo credit to popup
         popup +=
         "<a href = ' " +
         props.webLink +
         " ' target = '_blank'>" +
-        "<img height=200 src=' " +
+        "<img class = popup src=' " +
         props.imageLink +
-        "'></a><br>Photo Credit: " +
+        "'></a><br><span class=popup-credit>Photo Credit: " +
         "<a href = ' " +
         props.photoCreditLink +
         " ' target = '_blank'>" +
         props.photoCredit +
-        "</a>"
+        "</span></a>"
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
@@ -157,7 +157,9 @@ map.on('locationfound', onLocationFound);
           buildingLayer.removeLayer(layer)
         }
       });
-    }
+    };
+
+    map.setView([41.862458, -87.635606], 11); //return map back to initial zoom and center when a user chooses a new style
 };
 
 var styleData = {
@@ -189,13 +191,13 @@ var styleData = {
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
   },
-  Baroque: {
-    style: "Baroque",
-    description: "",
-    url: "https://chicagoarchitecturedata.com/static/images/assessor_images/17101180110000.jpg",
-    photoCredit: "Cook County Assessor Photo",
-    photoCreditLink: "http://www.cookcountyassessor.com/"
-  },
+  // Baroque: {
+  //   style: "Baroque",
+  //   description: "",
+  //   url: "https://chicagoarchitecturedata.com/static/images/assessor_images/17101180110000.jpg",
+  //   photoCredit: "Cook County Assessor Photo",
+  //   photoCreditLink: "http://www.cookcountyassessor.com/"
+  // },
   Bungalow: {
     style: "Bungalow",
     description: "A single story detached house, typically featuring a hipped roof with dormer. Although many were frame built, most Chicago bungalows are constructed of brick, and frequently feature a large front porch or sunroom.",
