@@ -3,9 +3,9 @@ html {
 }
 
 body {
-  height: 100%
+  height: 100%;
   Font-Family: 'Libre Franklin', Sans-Serif;
-  Font-Size: 17px;
+  font-size: 1rem;
 }
 
 .min-100 {
@@ -42,11 +42,11 @@ h5 {
 }
 
 @media (min-width: 768px) {
-  h5 {font-size:1.4rem;}
+  h5 {font-size:1.1rem;}
 }
 
 @media (min-width: 992px) {
-  h5 {font-size:1.2rem;}
+  h5 {font-size:1.1rem;}
 }
 
 @media (min-width: 1200px) {
@@ -62,11 +62,11 @@ h6 {
 }
 
 @media (min-width: 768px) {
-  h6 {font-size:1.2rem;}
+  h6 {font-size:1rem;}
 }
 
 @media (min-width: 992px) {
-  h6 {font-size:1.3rem;}
+  h6 {font-size:.8rem;}
 }
 
 @media (min-width: 1200px) {
@@ -74,7 +74,23 @@ h6 {
 }
 
 .photo-credit {
-  font-size: .7rem;
+  font-size:.5rem;
+}
+
+@media (min-width: 544px) {
+  .photo-credit {font-size:.5rem;}
+}
+
+@media (min-width: 768px) {
+  .photo-credit {font-size:.55rem;}
+}
+
+@media (min-width: 992px) {
+  .photo-credit {font-size:.5rem;}
+}
+
+@media (min-width: 1200px) {
+.photo-credit {font-size:.7rem;}
 }
 
 /* set font size to 0 at smallest viewport to make disappear */
@@ -108,15 +124,15 @@ h6 {
 }
 
 @media (min-width: 544px) {
-  .popup-header {font-size:1rem;}
+  .popup-header {font-size:.8rem;}
 }
 
 @media (min-width: 768px) {
-  .popup-header {font-size:1rem; text-align:center;}
+  .popup-header {font-size:.8rem; text-align:center;}
 }
 
 @media (min-width: 992px) {
-  .popup-header {font-size:1rem; text-align:center;}
+  .popup-header {font-size:.8rem; text-align:center;}
 }
 
 @media (min-width: 1200px) {
@@ -131,15 +147,15 @@ h6 {
 }
 
 @media (min-width: 544px) {
-  .popup-body {font-size:.8rem;}
+  .popup-body {font-size:.6rem;}
 }
 
 @media (min-width: 768px) {
-  .popup-body {font-size:.8rem;}
+  .popup-body {font-size:.6rem;}
 }
 
 @media (min-width: 992px) {
-  .popup-body {font-size:.8rem;}
+  .popup-body {font-size:.6rem;}
 }
 
 @media (min-width: 1200px) {
@@ -155,7 +171,7 @@ a:hover {
 }
 
 .card-body {
-  padding-top: 0;
+  padding-top: .75rem;
 }
 
 #map {
@@ -201,7 +217,7 @@ width: 150px;
 
 @media (min-width: 992px) {
   img.popup {
-    width: 300px;
+    width: 250px;
     margin-top: 5px;
     margin-bottom: 5px;
   }
@@ -233,9 +249,29 @@ img.popup:hover {
 }
 
 @media (min-width: 992px) {
-  .popup-credit {font-size:.6rem;}
+  .popup-credit {font-size:.4rem;}
 }
 
 @media (min-width: 1200px) {
   .popup-credit {font-size:.6rem;}
+}
+
+.locate-button {
+  font-size: .5rem;
+}
+
+@media (min-width: 544px) {
+  .locate-button {font-size:.5rem;}
+}
+
+@media (min-width: 768px) {
+  .locate-button {font-size:.6rem;}
+}
+
+@media (min-width: 992px) {
+  .locate-button {font-size:.5rem;}
+}
+
+@media (min-width: 1200px) {
+  .locate-button {font-size:.75rem;}
 }

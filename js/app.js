@@ -313,7 +313,7 @@ var styleData = {
   },
   Tudor: {
     style: "Tudor",
-    description: "This architecture style refers buildings built during a period of the Tudor dynasty, roughly from 1500 to 1560. Tudor style experienced a revival and became very popular in the US in the early 1900s. Made of brick or stone and embellished with decorative half-timbering, these buildings often feature steep gabled roofs and elaborate chimneys.",
+    description: "This style was very popular in the US in the early 1900s and is based on buildings built during the Tudor dynasty. Made of brick or stone and embellished with decorative half-timbering, these buildings often feature steep gabled roofs and elaborate chimneys.",
     url: "https://chicagoarchitecturedata.com/static/images/assessor_images/13024200380000.jpg",
     photoCredit: "Cook County Assessor Photo",
     photoCreditLink: "http://www.cookcountyassessor.com/"
