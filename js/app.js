@@ -15,7 +15,7 @@
 
   tiles.addTo(map);
 
-  //
+  //create user interaction that finds user location on map when button is pressed
   //declare myLocation first as null
   var myLocation = null
 
@@ -31,7 +31,7 @@
       map.removeLayer(myLocation)
       console.log(myLocation)
     }
-    //then add a new marker showing user location
+    //then add a new marker showing current user location
     myLocation = L.marker(e.latlng).addTo(map)
         .bindPopup("You are here").openPopup();
 }
@@ -56,11 +56,43 @@ map.on('locationfound', onLocationFound);
   //declare empty LayerGroup that will hold temporary layers to be removed during style filter
   var tempLayers = L.layerGroup();
 
+  var buildingIcon = L.icon({
+    iconUrl: "MAKI/building-alt1-15.svg",
+    iconSize: 30,
+    tooltipAnchor: [0, -15] // Center of your icon is [0,0]
+  });
+
+  var hoverIcon = L.icon({
+    iconUrl: "MAKI/building-hover.svg",
+    iconSize: 30,
+    tooltipAnchor: [0, -15] // Center of your icon is [0,0]
+  });
+
   function drawMap(data) {
     // create Leaflet object and add to map
     var buildingLayer = L.geoJson(data, {
 
+      pointToLayer: function(feature, latlng) {
+        // var buildingIcon = L.icon({
+        //   iconUrl: "MAKI/building-alt1-15.svg",
+        //   iconSize: 30,
+        //   tooltipAnchor: [0, -15] // Center of your icon is [0,0]
+        // });
+        return L.marker(latlng, {
+          icon:buildingIcon
+        });
+      },
+
       onEachFeature: function(feature, layer) {
+
+        layer.on('mouseover', function() {
+          layer.setIcon(hoverIcon);
+        });
+
+        layer.on('mouseout', function () {
+          layer.setIcon(buildingIcon);
+        });
+
         var props = feature.properties
 
         //empty string to hold popup info
@@ -122,12 +154,20 @@ map.on('locationfound', onLocationFound);
         // //if array for buildingType filter doesn't already have buildingType from a building in it, add to array
         // if (!buildingTypes.includes(props.buildingType)) buildingTypes.push(props.buildingType)
         // buildingTypes.sort();
-}
+
+        // layer.on('mouseover', function() {
+        //   layer.setStyle({
+        //     color: '#66b3ff',
+        //     weight: 2
+        //   }).bringToFront();
+        // })
+        }
+
 
     }).addTo(map);
 
     addStyleFilter(data, buildingLayer);
-      console.log(buildingLayer);
+    // console.log(buildingLayer);
   }
 
   //function to populate style filter dropdown with values from styles
@@ -171,8 +211,11 @@ map.on('locationfound', onLocationFound);
       });
     };
 
-    map.setView([41.862458, -87.635606], 11); //return map back to initial zoom and center when a user chooses a new style
+    // map.setView([41.862458, -87.635606], 11); //return map back to initial zoom and center when a user chooses a new style
+    map.fitBounds(buildingLayer.getBounds()); //fit bounds of map to buildings of selected style
+    map.setZoom(map.getZoom() - .4);
 };
+
 
 var styleData = {
   AmericanFourSquare: {
