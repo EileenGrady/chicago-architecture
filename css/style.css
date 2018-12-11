@@ -162,11 +162,15 @@ h6 {
 }
 
 a {
-  color: #76c5cc;
+  color: #81C7E1;
 }
 
 a:hover {
-  color: #76c5cc;
+  color: #81C7E1;
+}
+
+a.leaflet-pop-content {
+  color: #81C7E1;
 }
 
 .card-body {
@@ -231,7 +235,7 @@ width: 150px;
 }
 
 img.popup:hover {
-  box-shadow: 0 0 5px 2px #76c5cc;
+  box-shadow: 0 0 5px 2px #81C7E1;
 }
 
 .popup-credit {
