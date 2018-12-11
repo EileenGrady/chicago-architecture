@@ -118,7 +118,6 @@ h6 {
   font-size: .7rem;
   Font-Family: 'Cardo', Serif;
   font-weight: bold;
-  text-align: center;
   /* prevent line breaks in popup */
   white-space: nowrap;
 }
@@ -128,15 +127,15 @@ h6 {
 }
 
 @media (min-width: 768px) {
-  .popup-header {font-size:.8rem; text-align:center;}
+  .popup-header {font-size:.8rem;}
 }
 
 @media (min-width: 992px) {
-  .popup-header {font-size:.8rem; text-align:center;}
+  .popup-header {font-size:.8rem;}
 }
 
 @media (min-width: 1200px) {
-  .popup-header {font-size:1rem; text-align:center;}
+  .popup-header {font-size:1rem;}
 }
 
 .popup-body {
@@ -171,7 +170,7 @@ a:hover {
 }
 
 .card-body {
-  padding-top: .75rem;
+  padding-top: .5rem;
 }
 
 #map {

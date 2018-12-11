@@ -15,6 +15,10 @@
 
   tiles.addTo(map);
 
+  //
+  //declare myLocation first as null
+  var myLocation = null
+
   //select locate button, leaflet .locate function when button is pressed
   $('#locate-me').on('click', function() {
    map.locate({setView: true, maxZoom: 16});
@@ -22,11 +26,19 @@
 
   //bind popup at user location that says, "you are here"
   function onLocationFound(e) {
-    var myLocation = L.marker(e.latlng).addTo(map)
+    //if button has already been pressed and a myLocation marker exists, remove it first
+    if (myLocation != null) {
+      map.removeLayer(myLocation)
+      console.log(myLocation)
+    }
+    //then add a new marker showing user location
+    myLocation = L.marker(e.latlng).addTo(map)
         .bindPopup("You are here").openPopup();
 }
 
 map.on('locationfound', onLocationFound);
+
+
 
   // use omnivore to load the CSV data
   omnivore.csv('data/chicago-architecture.csv')
@@ -38,11 +50,10 @@ map.on('locationfound', onLocationFound);
       console.log(e.error[0].message);
     })
 
-  //create empty arrays to hold values for dropdown filter options
-  var architects = []
-  var styles = []
-  var buildingTypes = []
+  //create empty array to hold values for dropdown filter options
+  var styles =[]
 
+  //declare empty LayerGroup that will hold temporary layers to be removed during style filter
   var tempLayers = L.layerGroup();
 
   function drawMap(data) {
@@ -81,7 +92,7 @@ map.on('locationfound', onLocationFound);
         //   popup += "<span class='popup-body'>" + props.buildingType + "</span><br>"
         // }
 
-        //append building photo and photo credit to popup
+        //append building photo (as link to accompanying page for building on chicagoarchitecturedata.com) and photo credit to popup
         popup +=
         "<a href = ' " +
         props.webLink +
@@ -100,17 +111,17 @@ map.on('locationfound', onLocationFound);
           autoPan: true
 				});
 
-        //if array for architect filter doesn't already have architect from a building in it, add to array
-        if (!architects.includes(props.architect)) architects.push(props.architect)
-        architects.sort();
+        // //if array for architect filter doesn't already have architect from a building in it, add to array
+        // if (!architects.includes(props.architect)) architects.push(props.architect)
+        // architects.sort();
 
         //if array for style filter doesn't already have style from a building in it, add to array
         if (!styles.includes(props.Style)) styles.push(props.Style)
         styles.sort();
 
-        //if array for buildingType filter doesn't already have buildingType from a building in it, add to array
-        if (!buildingTypes.includes(props.buildingType)) buildingTypes.push(props.buildingType)
-        buildingTypes.sort();
+        // //if array for buildingType filter doesn't already have buildingType from a building in it, add to array
+        // if (!buildingTypes.includes(props.buildingType)) buildingTypes.push(props.buildingType)
+        // buildingTypes.sort();
 }
 
     }).addTo(map);
@@ -264,7 +275,7 @@ var styleData = {
   },
   Prarie: {
     style: "Prairie",
-    description: "As the name suggests, the Prairie School of architecture originated in the midwest. It is often characterized by flowing horizontal lines and quality and craftsmanship in materials. In part a reaction to disdain for the near total Classical and European styles of the 1893 World's Columbian Exposition, many architects wanted a more organic and American architectural style. It shares many similarities with the Arts and Crafts movement, emphasizing quality handmade materials and not mass produced materials.",
+    description: "The Prairie School of architecture originated in the Midwest and is often characterized by flowing horizontal lines, and quality materials. Partly a reaction to disdain for the Classical and European styles of the 1893 World's Columbian Exposition, many architects wanted a more organic and American architectural style. It shares many similarities with the Arts and Crafts movement, emphasizing quality handmade materials over mass produced materials.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/5757-s-woodlawn-avenue-1418149511.jpg.800x800_q85_upscale.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
@@ -306,7 +317,7 @@ var styleData = {
   },
   Sullivanesque: {
     style: "Sullivanesque",
-    description: "A subgroup of the Prairie Style, the Sullivanesque style is named for one of the most important figures in architecture, Louis Sullivan. The Sullivanesque Style is typically identified by a lack of historical ornament, a low-pitched or flat roof, and geometric forms and shapes. Sullivanesque ornamentation is circular and floral, whereas the other subgroups of the Prairie Style, particularly practiced by Frank Lloyd Wright, are angular and linear in nature.",
+    description: "A subgroup of the Prairie Style, the Sullivanesque style is named an important figure in archictecture, Louis Sullivan. This style is typically identified by a lack of historical ornament, a low-pitched or flat roof, and geometric forms and shapes. Sullivanesque ornamentation is circular and floral, whereas the other subgroups of the Prairie Style, particularly practiced by Frank Lloyd Wright, are angular and linear in nature.",
     url: "https://chicagoarchitecturedata.com/static/images/building_images/40-e-55th-street-1410219898.jpg.800x800_q85_upscale.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
