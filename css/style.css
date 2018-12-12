@@ -22,15 +22,35 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  h1 {font-size:1.7rem;}
+  h1 {font-size:1.5rem;}
 }
 
 @media (min-width: 992px) {
-  h1 {font-size:2rem;}
+  h1 {font-size:1.8rem;}
 }
 
 @media (min-width: 1200px) {
-  h1 {font-size:3rem;}
+  h1 {font-size:2.7rem;}
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+@media (min-width: 544px) {
+  h4 {font-size: 1rem;}
+}
+
+@media (min-width: 768px) {
+  h4 {font-size:1rem;}
+}
+
+@media (min-width: 992px) {
+  h4 {font-size:1rem;}
+}
+
+@media (min-width: 1200px) {
+  h4 {font-size:1rem;}
 }
 
 h5 {
@@ -96,9 +116,12 @@ h6 {
 /* set font size to 0 at smallest viewport to make disappear */
 .subtitle {
   font-size: 0rem;
+  /* Font-Family: 'Libre Franklin', Sans-Serif; */
+  /* color: rgb(255, 255, 255, 0.5); */
+  /* text-transform: uppercase; */
 }
 
-@media (min-width: 544px) {
+/* @media (min-width: 544px) {
   .subtitle {font-size:0rem;}
 }
 
@@ -111,8 +134,28 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-  .subtitle {font-size:2rem;}
+  .subtitle {font-size:1.4rem;}
+} */
+
+@media (min-width: 544px) {
+  .subtitle {font-size:0rem;}
 }
+
+@media (min-width: 768px) {
+  .subtitle {font-size:1.5rem;}
+}
+
+@media (min-width: 992px) {
+  .subtitle {font-size:1.8rem;}
+}
+
+@media (min-width: 1200px) {
+  .subtitle {font-size:2.7rem;}
+}
+
+/* #navbarDropdownMenuLink {
+  width: 300px;
+} */
 
 .popup-header {
   font-size: .7rem;
@@ -166,10 +209,6 @@ a {
 }
 
 a:hover {
-  color: #6EBCD8;
-}
-
-a.leaflet-pop-content {
   color: #6EBCD8;
 }
 
@@ -277,4 +316,9 @@ img.popup:hover {
 
 @media (min-width: 1200px) {
   .locate-button {font-size:.75rem;}
+}
+
+#navbarDropdownMenuLink {
+  font-size: 1rem;
+}
 }

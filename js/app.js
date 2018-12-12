@@ -25,7 +25,7 @@
   });
 
   var locationIcon = L.icon({
-    iconUrl: "MAKI/circle-15.svg",
+    iconUrl: "icons/marker-15.svg",
     iconSize: 30,
   });
 
@@ -62,14 +62,14 @@ map.on('locationfound', onLocationFound);
 
   //define icon to use for buildings
   var buildingIcon = L.icon({
-    iconUrl: "MAKI/building-alt1-15.svg",
+    iconUrl: "icons/building-alt1-15.svg",
     iconSize: 30,
     tooltipAnchor: [0, -15] // Center of your icon is [0,0]
   });
 
   //define icon to use during mouseover event for user affordance
   var hoverIcon = L.icon({
-    iconUrl: "MAKI/building-hover.svg",
+    iconUrl: "icons/building-hover.svg",
     iconSize: 30,
     tooltipAnchor: [0, -15] // Center of your icon is [0,0]
   });
@@ -143,7 +143,8 @@ map.on('locationfound', onLocationFound);
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
-          autoPan: false
+          keepInView: true //pans map to show full popup if extends past screen
+
 				});
 
         //if array for style filter doesn't already have style from a building in it, add to array
@@ -375,10 +376,10 @@ var styleData = {
     url: "/images/bridgeport-banner.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/",
-    sourceData: "Chicago Architecture Data",
-    sourceDataLink: "https://chicagoarchitecturedata.com/",
-    sourceData2: "Chicago Patterns",
-    sourceData2Link: "http://chicagopatterns.com/"
+    sourceDataOne: "Chicago Architecture Data",
+    sourceDataLinkOne: "https://chicagoarchitecturedata.com/",
+    sourceDataTwo: "Chicago Patterns",
+    sourceDataLinkTwo: "http://chicagopatterns.com/"
   }
 }
 
@@ -389,7 +390,11 @@ var styleData = {
       $('.photo-credit-link').attr('href', styleData.default.photoCreditLink)//update photoCredit link for representative image for selected style
       $('.photo-credit-link').text(styleData.default.photoCredit) //update photoCredit for representative image for selected style
       $('.card-title').text(styleData.default.style)
-      $('.card-subtitle').text(styleData.default.description) //update style details to details for selected style    } else { //if any other selection is made on the style filter dropdown
+      $('.card-subtitle').text(styleData.default.description)
+      $('.default-one').attr('href', styleData.default.sourceDataLinkOne)
+      $('.default-one').text(styleData.default.sourceDataOne)
+      $('.default-two').attr('href', styleData.default.sourceDataLinkTwo)
+      $('.default-two').text(styleData.default.sourceDataTwo) //update style details to details for selected style    } else { //if any other selection is made on the style filter dropdown
     }
 
     //loop through each style in styleData
