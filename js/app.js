@@ -2,15 +2,15 @@
 
   var map = L.map('map', {
     zoomSnap: .1,
-    center: [41.862458, -87.635606],
-    zoom: 11,
+    // center: [41.862458, -87.635606],
+    // zoom: 11,
     zoomControl: false
   });
 
   var tiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     subdomains: 'abcd',
-    maxZoom: 19
+    minZoom: 10
   });
 
   tiles.addTo(map);
@@ -24,21 +24,25 @@
    map.locate({setView: true, maxZoom: 16});
   });
 
+  var locationIcon = L.icon({
+    iconUrl: "MAKI/circle-15.svg",
+    iconSize: 30,
+  });
+
   //bind popup at user location that says, "you are here"
   function onLocationFound(e) {
     //if button has already been pressed and a myLocation marker exists, remove it first
     if (myLocation != null) {
       map.removeLayer(myLocation)
-      console.log(myLocation)
     }
     //then add a new marker showing current user location
-    myLocation = L.marker(e.latlng).addTo(map)
+    myLocation = L.marker(e.latlng, {
+      icon: locationIcon
+    }).addTo(map)
         .bindPopup("You are here").openPopup();
 }
 
 map.on('locationfound', onLocationFound);
-
-
 
   // use omnivore to load the CSV data
   omnivore.csv('data/chicago-architecture.csv')
@@ -56,12 +60,14 @@ map.on('locationfound', onLocationFound);
   //declare empty LayerGroup that will hold temporary layers to be removed during style filter
   var tempLayers = L.layerGroup();
 
+  //define icon to use for buildings
   var buildingIcon = L.icon({
     iconUrl: "MAKI/building-alt1-15.svg",
     iconSize: 30,
     tooltipAnchor: [0, -15] // Center of your icon is [0,0]
   });
 
+  //define icon to use during mouseover event for user affordance
   var hoverIcon = L.icon({
     iconUrl: "MAKI/building-hover.svg",
     iconSize: 30,
@@ -73,11 +79,6 @@ map.on('locationfound', onLocationFound);
     var buildingLayer = L.geoJson(data, {
 
       pointToLayer: function(feature, latlng) {
-        // var buildingIcon = L.icon({
-        //   iconUrl: "MAKI/building-alt1-15.svg",
-        //   iconSize: 30,
-        //   tooltipAnchor: [0, -15] // Center of your icon is [0,0]
-        // });
         return L.marker(latlng, {
           icon:buildingIcon
         });
@@ -85,10 +86,12 @@ map.on('locationfound', onLocationFound);
 
       onEachFeature: function(feature, layer) {
 
+        //change icon color when mouseover
         layer.on('mouseover', function() {
           layer.setIcon(hoverIcon);
         });
 
+        //change icon color back when mouseout
         layer.on('mouseout', function () {
           layer.setIcon(buildingIcon);
         });
@@ -124,7 +127,7 @@ map.on('locationfound', onLocationFound);
         //   popup += "<span class='popup-body'>" + props.buildingType + "</span><br>"
         // }
 
-        //append building photo (as link to accompanying page for building on chicagoarchitecturedata.com) and photo credit to popup
+        //append building photo (linked to accompanying page for building on chicagoarchitecturedata.com) and photo credit to popup
         popup +=
         "<a href = ' " +
         props.webLink +
@@ -140,34 +143,21 @@ map.on('locationfound', onLocationFound);
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
-          autoPan: true
+          autoPan: false
 				});
-
-        // //if array for architect filter doesn't already have architect from a building in it, add to array
-        // if (!architects.includes(props.architect)) architects.push(props.architect)
-        // architects.sort();
 
         //if array for style filter doesn't already have style from a building in it, add to array
         if (!styles.includes(props.Style)) styles.push(props.Style)
         styles.sort();
 
-        // //if array for buildingType filter doesn't already have buildingType from a building in it, add to array
-        // if (!buildingTypes.includes(props.buildingType)) buildingTypes.push(props.buildingType)
-        // buildingTypes.sort();
-
-        // layer.on('mouseover', function() {
-        //   layer.setStyle({
-        //     color: '#66b3ff',
-        //     weight: 2
-        //   }).bringToFront();
-        // })
-        }
-
+      }
 
     }).addTo(map);
 
+    map.fitBounds(buildingLayer.getBounds()); //fit map bounds to buildingLayer extent
+    map.setZoom(map.getZoom() - .1); //zoom back out a bit to capture entirety of icons
+
     addStyleFilter(data, buildingLayer);
-    // console.log(buildingLayer);
   }
 
   //function to populate style filter dropdown with values from styles
@@ -213,7 +203,7 @@ map.on('locationfound', onLocationFound);
 
     // map.setView([41.862458, -87.635606], 11); //return map back to initial zoom and center when a user chooses a new style
     map.fitBounds(buildingLayer.getBounds()); //fit bounds of map to buildings of selected style
-    map.setZoom(map.getZoom() - .4);
+    map.setZoom(map.getZoom() - .4); //zoom out a bit to capture entirety of icons
 };
 
 
@@ -378,28 +368,37 @@ var styleData = {
     url: "/images/bridgeport-banner.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
+  },
+  default: {
+    style: "A map of interesting buildings in Chicago.",
+    description: "This map created with data from Chicago Architecture Data, a project by the team at Chicago Patterns.",
+    url: "/images/bridgeport-banner.jpg",
+    photoCredit: "John Morris",
+    photoCreditLink: "http://john-morris.com/",
+    sourceData: "Chicago Architecture Data",
+    sourceDataLink: "https://chicagoarchitecturedata.com/",
+    sourceData2: "Chicago Patterns",
+    sourceData2Link: "http://chicagopatterns.com/"
   }
 }
-
 
   function updateStyleDetails(attributeValue) {
 
     if (attributeValue == 'all') { //if filter set to all
-      var styleCard = $('.card-title').text('A map of interesting buildings in Chicago') //keep card title the same as opening page
-    } else { //if any other selection is made on the style filter dropdown
-      $('.card-title').text(attributeValue) //change the card title text to that attribute, or the style shown on map
+      $('.card-img-top').attr('src',styleData.default.url) //keep card image the same as opening page
+      $('.photo-credit-link').attr('href', styleData.default.photoCreditLink)//update photoCredit link for representative image for selected style
+      $('.photo-credit-link').text(styleData.default.photoCredit) //update photoCredit for representative image for selected style
+      $('.card-title').text(styleData.default.style)
+      $('.card-subtitle').text(styleData.default.description) //update style details to details for selected style    } else { //if any other selection is made on the style filter dropdown
     }
 
     //loop through each style in styleData
     for (var style in styleData) {
-      if (attributeValue == 'all') { //if filter set to all
-        $('.card-img-top').attr('src','/images/bridgeport-banner.jpg') //keep card image the same as opening page
-        $('.photo-credit').text('Photo Credit: John Morris') //keep photo credit same as opening page
-        $('.card-subtitle').text('') //keep style details blank
-      } else if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
+      if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
         $('.photo-credit-link').attr('href', styleData[style].photoCreditLink)//update photoCredit link for representative image for selected style
         $('.photo-credit-link').text(styleData[style].photoCredit) //update photoCredit for representative image for selected style
+        $('.card-title').text(styleData[style].style)
         $('.card-subtitle').text(styleData[style].description) //update style details to details for selected style
       }
     }
