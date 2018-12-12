@@ -103,23 +103,23 @@ map.on('locationfound', onLocationFound);
 
         //if building has a name, use that as popup header, then append address to next line
         if (props.buildingName) {
-          popup += "<span class='popup-header'>" + props.buildingName + "</span><br><span class='popup-body'>" + props.Address + "</span><br>"
+          popup += "<h1>" + props.buildingName + "</h1><p>" + props.Address + "</p>"
           //if building does not have name, use address as popupheader
         } else {
-          popup += "<span class='popup-header'>" + props.Address + "</span><br>"
+          popup += "<h1>" + props.Address + "</h1>"
         }
 
         //append building style to popup
-        popup += "<span class='popup-body'>Style: " + props.Style + "</span><br>"
+        popup += "<p>Style: " + props.Style + "</p>"
 
         //if building has an architect listed, append to popup
         if (props.architect) {
-          popup += "<span class='popup-body'>Designed by " + props.architect + "</span><br>"
+          popup += "<p>Designed by " + props.architect + "</p>"
         }
 
         //if building has year built listed, append to popup
         if (props.yearBuilt) {
-          popup += "<span class='popup-body'>Built in " + props.yearBuilt + "</span><br>"
+          popup += "<p>Built in " + props.yearBuilt + "</p>"
         }
 
         //if building had buidling type listed, append to popup
@@ -134,17 +134,16 @@ map.on('locationfound', onLocationFound);
         " ' target = '_blank'>" +
         "<img class = popup src=' " +
         props.imageLink +
-        "'></a><br><span class=popup-credit>Photo Credit: " +
+        "'></a><h6>Photo Credit: " +
         "<a href = ' " +
         props.photoCreditLink +
         " ' target = '_blank'>" +
         props.photoCredit +
-        "</span></a>"
+        "</h6>"
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
-          keepInView: true //pans map to show full popup if extends past screen
-
+          keepInView: true, //pans map to show full popup if extends past screen
 				});
 
         //if array for style filter doesn't already have style from a building in it, add to array
@@ -369,41 +368,24 @@ var styleData = {
     url: "/images/bridgeport-banner.jpg",
     photoCredit: "John Morris",
     photoCreditLink: "http://john-morris.com/"
-  },
-  default: {
-    style: "A map of interesting buildings in Chicago.",
-    description: "This map created with data from Chicago Architecture Data, a project by the team at Chicago Patterns.",
-    url: "/images/bridgeport-banner.jpg",
-    photoCredit: "John Morris",
-    photoCreditLink: "http://john-morris.com/",
-    sourceDataOne: "Chicago Architecture Data",
-    sourceDataLinkOne: "https://chicagoarchitecturedata.com/",
-    sourceDataTwo: "Chicago Patterns",
-    sourceDataLinkTwo: "http://chicagopatterns.com/"
   }
 }
 
+//create clone of side panel to be used to revert side panel back to default if user selects all from style filter dropdown
+var defaultClone = $('#style-card').clone();
+
   function updateStyleDetails(attributeValue) {
-
-    if (attributeValue == 'all') { //if filter set to all
-      $('.card-img-top').attr('src',styleData.default.url) //keep card image the same as opening page
-      $('.photo-credit-link').attr('href', styleData.default.photoCreditLink)//update photoCredit link for representative image for selected style
-      $('.photo-credit-link').text(styleData.default.photoCredit) //update photoCredit for representative image for selected style
-      $('.card-title').text(styleData.default.style)
-      $('.card-subtitle').text(styleData.default.description)
-      $('.default-one').attr('href', styleData.default.sourceDataLinkOne)
-      $('.default-one').text(styleData.default.sourceDataOne)
-      $('.default-two').attr('href', styleData.default.sourceDataLinkTwo)
-      $('.default-two').text(styleData.default.sourceDataTwo) //update style details to details for selected style    } else { //if any other selection is made on the style filter dropdown
+    //if filter set to all, revert side panel back to default
+    if (attributeValue == 'all') {
+      $('#style-card').replaceWith(defaultClone);
     }
-
     //loop through each style in styleData
     for (var style in styleData) {
       if (attributeValue == styleData[style].style) { //if any other selection made that matches a style in styleData
         $('.card-img-top').attr('src', styleData[style].url) //update card image to representative image for selected style
         $('.photo-credit-link').attr('href', styleData[style].photoCreditLink)//update photoCredit link for representative image for selected style
         $('.photo-credit-link').text(styleData[style].photoCredit) //update photoCredit for representative image for selected style
-        $('.card-title').text(styleData[style].style)
+        $('.card-title').text(styleData[style].style) //update card title with selected style
         $('.card-subtitle').text(styleData[style].description) //update style details to details for selected style
       }
     }
