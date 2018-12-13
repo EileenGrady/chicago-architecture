@@ -2,18 +2,37 @@
 
   var map = L.map('map', {
     zoomSnap: .1,
-    // center: [41.862458, -87.635606],
-    // zoom: 11,
-    zoomControl: false
+    center: [41.862458, -87.635606],
+    zoom: 11,
+    zoomControl: false,
+    minZoom: 9
   });
 
-  var tiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    subdomains: 'abcd',
-    // minZoom: 10
+  //create new mapPane for labels
+  map.createPane('labels');
+
+  //set z-index of label pane higher than layer so will show above
+  map.getPane('labels').style.zIndex = 650;
+  //so label pane won't register clicks, therefore blocking any buildings underneath a user tries to click on
+  map.getPane('labels').style.pointerEvents = 'none';
+
+  // Adding Voyager Basemap
+  var tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+  // Adding Voyager Labels
+  var mapLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    pane: 'labels' //define which pane the labels is part of
+  }).addTo(map);
+
+  //create client with usersname and apikey
+  var client = new carto.Client({
+  apiKey: '4f4d4ba8a5a988c9632fb3a3d4e47d755f963151',
+  username: 'eileengrady'
   });
 
-  tiles.addTo(map);
 
   //create user interaction that finds user location on map when button is pressed
   //declare myLocation first as null
@@ -24,6 +43,7 @@
    map.locate({setView: true, maxZoom: 16});
   });
 
+  //define icon to be used for user location
   var locationIcon = L.icon({
     iconUrl: "icons/marker-15.svg",
     iconSize: 30,
@@ -35,13 +55,14 @@
     if (myLocation != null) {
       map.removeLayer(myLocation)
     }
-    //then add a new marker showing current user location
+    //then add a new marker showing current user location and "you are here" popup
     myLocation = L.marker(e.latlng, {
       icon: locationIcon
     }).addTo(map)
-        .bindPopup("You are here").openPopup();
+        .bindPopup("<p><strong>You are here.</strong></p>",{offset: new L.Point(0, -8)}).openPopup(); //add offset to have popup appear directly above marker
 }
 
+//move map to the location found when button is clicked
 map.on('locationfound', onLocationFound);
 
   // use omnivore to load the CSV data
@@ -143,7 +164,7 @@ map.on('locationfound', onLocationFound);
 
 				// bind popup to layer
 				layer.bindPopup(popup, {
-          keepInView: true, //pans map to show full popup if extends past screen
+          keepInView: true //pans map to show full popup if extends past screen
 				});
 
         //if array for style filter doesn't already have style from a building in it, add to array

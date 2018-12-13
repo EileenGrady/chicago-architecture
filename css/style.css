@@ -22,7 +22,7 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  h1 {font-size:1.5rem;}
+  h1 {font-size:1.4rem;}
 }
 
 @media (min-width: 992px) {
@@ -132,6 +132,13 @@ h6 {
 
 @media (min-width: 1200px) {
   .subtitle {font-size:2.7rem;}
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgb(0, 0, 0);
+  /* border: 1px solid grey; */
+  /* border-radius: 5px; */
+  color: #d8e9f3;
 }
 
 .leaflet-popup-content h1 {
@@ -298,7 +305,7 @@ img.popup:hover {
 }
 
 #navbarDropdownMenuLink {
-  font-size: .55rem;
+  font-size: .6rem;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -308,11 +315,11 @@ img.popup:hover {
 }
 
 @media (min-width: 768px) {
-  #navbarDropdownMenuLink {font-size:.7rem;}
+  #navbarDropdownMenuLink {font-size:.9rem;}
 }
 
 @media (min-width: 992px) {
-  #navbarDropdownMenuLink {font-size:.75rem;}
+  #navbarDropdownMenuLink {font-size:.7rem;}
 }
 
 @media (min-width: 1200px) {
