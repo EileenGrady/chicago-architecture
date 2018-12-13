@@ -298,5 +298,23 @@ img.popup:hover {
 }
 
 #navbarDropdownMenuLink {
-  font-size: .9rem;
+  font-size: .55rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+@media (min-width: 544px) {
+  #navbarDropdownMenuLink {font-size:.75rem;}
+}
+
+@media (min-width: 768px) {
+  #navbarDropdownMenuLink {font-size:.7rem;}
+}
+
+@media (min-width: 992px) {
+  #navbarDropdownMenuLink {font-size:.75rem;}
+}
+
+@media (min-width: 1200px) {
+  #navbarDropdownMenuLink {font-size:.9rem;}
 }
