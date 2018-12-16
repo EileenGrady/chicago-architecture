@@ -99,9 +99,10 @@
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, {
           // opacity: 1,
-          weight: 2,
-          radius: 8,
-          color: getColor(feature.properties.Style),
+          weight: 1,
+          radius: 6,
+          // color: getColor(feature.properties.Style),
+          color: "#737373",
           fillColor: getColor(feature.properties.Style),
           fillOpacity: .7
         })
@@ -122,7 +123,8 @@
         layer.on('mouseout', function () {
           // layer.setIcon(buildingIcon);
           layer.setStyle({
-            color: getColor(feature.properties.Style),
+            // color: getColor(feature.properties.Style),
+            color: "#737373",
             fillColor: getColor(feature.properties.Style)
           })
         });
@@ -221,11 +223,11 @@
       color: "#fc8d62"
     },
     ArtsAndCrafts: {
-      group: "Prairie, Craftsman, and Bungalow",
+      group: "Arts and Crafts",
       color: "#8da0cb"
     },
     Chicago: {
-      group: "Chicago School and Sullivanesque",
+      group: "Chicago Styles",
       color: "#e78ac3"
     },
     Modernism: {
@@ -245,7 +247,7 @@
     });
     legend.onAdd = function() {
       var div = L.DomUtil.create('div', 'legend');
-      div.innerHTML = "<h5>Architecture Style Groups</h5>";
+      div.innerHTML = "<h5>Buildings by Style Group</h5>";
       for (var style in styleGroups) {
 
         var color = styleGroups[style].color

@@ -20,36 +20,60 @@ a:hover {
   padding: 10px 15px;
   font-size: .75rem;
   background: rgba(256, 256, 256, .9);
-  border: 1px solid grey;
-  border-radius: 3px;
+  border: 1px solid rgb(142, 140, 132);
+  border-radius: 9px;
 }
 
 .legend h5 {
-  font-size: .9rem;
+  font-size: .6rem;
   font-family: 'Libre Franklin', Sans-Serif;
   font-weight: bold;
-  color: #001323;
+  color: #8e8c84;
   margin: 0 0 10px 0;
+  line-height: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .legend span {
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   float: left;
   margin: 0 10px 4px 0;
   border-radius: 50%;
 }
 
 .legend label {
-  font-size: .75rem;
+  font-size: .6rem;
   font-family: 'Libre Franklin', Sans-Serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #8e8c84;
 }
 
-/* .legend label:after {
-  content: '';
-  display: block;
-  clear: both;
-} */
+@media (min-width: 544px) {
+  .legend h5 {font-size:1rem;}
+  .legend span {width:12px; height:12px;}
+  .legend label {font-size: .8rem;}
+}
+
+@media (min-width: 768px) {
+  .legend h5 {font-size:1rem;}
+  .legend span {width:20px; height:20px;}
+  .legend label {font-size: .8rem;}
+}
+
+@media (min-width: 992px) {
+  .legend h5 {font-size:1rem;}
+  .legend span {width:20px; height:20px;}
+  .legend label {font-size: .8rem;}
+}
+
+@media (min-width: 1200px) {
+  .legend h5 {font-size:1rem;}
+  .legend span {width:20px; height:20px;}
+  .legend label {font-size: .8rem;}
+}
 
 h1 {
   font-size:1.2rem;
