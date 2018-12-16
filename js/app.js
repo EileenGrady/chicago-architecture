@@ -104,10 +104,12 @@
 
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, {
-          opacity: 1,
+          // opacity: 1,
           weight: 2,
-          radius: 5,
-          color: '#89CCF7'
+          radius: 10,
+          color: getColor(feature.properties.Style),
+          fillColor: getColor(feature.properties.Style),
+          fillOpacity: .7
         })
       },
 
@@ -115,12 +117,20 @@
 
         //change icon color when mouseover
         layer.on('mouseover', function() {
-          layer.setIcon(hoverIcon);
+          // layer.setIcon(hoverIcon);
+          layer.setStyle({
+            color: "#66ffff",
+            fillColor: "#66ffff"
+          })
         });
 
         //change icon color back when mouseout
         layer.on('mouseout', function () {
-          layer.setIcon(buildingIcon);
+          // layer.setIcon(buildingIcon);
+          layer.setStyle({
+            color: getColor(feature.properties.Style),
+            fillColor: getColor(feature.properties.Style)
+          })
         });
 
         var props = feature.properties
@@ -187,9 +197,22 @@
     addStyleFilter(data, buildingLayer);
   }
 
-  // function getColor() {
-  //
-  // }
+  function getColor(style) {
+    if (style == 'Gothic' || style == 'Tudor' || style == 'Eastlake' || style == 'Queen Anne' || style == 'Second Empire') {
+      return "#66c2a5"
+    } else if (style == 'Italianate' || style == 'Classical' || style == 'Romanesque' || style == 'Second Renaissance Revival' || style == 'Neo-Grec') {
+      return "#fc8d62"
+    } else if (style == "Prairie" || style == "Craftsman" || style == "Bungalow") {
+      return "#8da0cb"
+    } else if (style == 'Chicago School' || style == 'Sullivanesque') {
+      return "#e78ac3"
+    } else if (style == 'Art Deco' || style == 'Art Deco/Moderne' || style == 'Modern') {
+      return "#a6d854"
+    } else if (style == 'Unclassified Style') {
+      return "#ffd92f"
+    }
+  }
+
 
   //function to populate style filter dropdown with values from styles
   function addStyleFilter(data, buildingLayer, styleData) {
