@@ -106,7 +106,7 @@
         return L.circleMarker(latlng, {
           // opacity: 1,
           weight: 2,
-          radius: 10,
+          radius: 8,
           color: getColor(feature.properties.Style),
           fillColor: getColor(feature.properties.Style),
           fillOpacity: .7
@@ -194,6 +194,8 @@
     map.fitBounds(buildingLayer.getBounds()); //fit map bounds to buildingLayer extent
     map.setZoom(map.getZoom() - .1); //zoom back out a bit to capture entirety of icons
 
+    drawLegend();
+
     addStyleFilter(data, buildingLayer);
   }
 
@@ -211,6 +213,59 @@
     } else if (style == 'Unclassified Style') {
       return "#ffd92f"
     }
+  }
+
+  var styleGroups = {
+    VictorianStyle: {
+      group: "Victorian Styles",
+      styles: "Gothic, Tudor, Queen Anne, Eastlake, Second Empire",
+      color: "#66c2a5"
+    },
+    ClassicStyle: {
+      group: "Classic Styles",
+      styles: "Italianate, Classical, Romanesque, Second Renaissance Revival, Neo-Grec",
+      color: "#fc8d62"
+    },
+    ArtsAndCrafts: {
+      group: "Prairie, Craftsman, and Bungalow",
+      color: "#8da0cb"
+    },
+    Chicago: {
+      group: "Chicago School and Sullivanesque",
+      color: "#e78ac3"
+    },
+    Modernism: {
+      group: "Modernism",
+      styles: "Art Deco, Art Deco/Moderne, Modern",
+      color: "#a6d854"
+    },
+    Unclassified: {
+      group: "Unclassified Style",
+      color: "#ffd92f"
+    }
+  }
+
+  function drawLegend() {
+    var legend = L.control({
+      position: 'bottomright'
+    });
+    legend.onAdd = function() {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = "<h5>Architecture Style Groups</h5>";
+      for (var style in styleGroups) {
+
+        var color = styleGroups[style].color
+
+        var group = styleGroups[style].group
+
+        div.innerHTML +=
+          '<span style="background:' + color + '"></span> ' +
+          '<label>' + group + '</label><br>';
+      }
+
+      return div
+    };
+    legend.addTo(map);
   }
 
 
