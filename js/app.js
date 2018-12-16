@@ -17,21 +17,15 @@
   map.getPane('labels').style.pointerEvents = 'none';
 
   // Adding Voyager Basemap
-  var tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
     maxZoom: 18
   }).addTo(map);
 
   // Adding Voyager Labels
-  var mapLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png', {
     maxZoom: 18,
     pane: 'labels' //define which pane the labels is part of
   }).addTo(map);
-
-  //create client with username and apikey
-  var client = new carto.Client({
-    apiKey: '4f4d4ba8a5a988c9632fb3a3d4e47d755f963151',
-    username: 'eileengrady'
-  });
 
   //create user interaction that finds user location on map when button is pressed
   //declare myLocation first as null
