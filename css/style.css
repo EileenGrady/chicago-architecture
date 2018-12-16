@@ -150,9 +150,29 @@ h6 {
   padding-top: .4rem;
 }
 
-.card {
-  height: auto;
+#style-card {
+  /* max-height: 500px; */
 }
+
+@media (min-width: 544px) {
+  #style-card {}
+}
+
+@media (min-width: 768px) {
+  #style-card {}
+}
+
+@media (min-width: 992px) {
+  #style-card {}
+}
+
+@media (min-width: 1200px) {
+  #style-card {}
+}
+
+/* .card {
+  height: auto;
+} */
 
 .locate-button {
   font-size: .5rem;

@@ -305,7 +305,7 @@
     },
     Italianate: {
       style: "Italianate",
-      description: "A style influenced by Italian villas, Italianate was one of the most popular styles of the Victorian era. It emphasizes verticality, symmetry, and a stately appearance. Usually features large cornice bracketing, and often has curved windowe and stone trim with floral patterns.",
+      description: "A style influenced by Italian villas, Italianate was one of the most popular styles of the Victorian era. It emphasizes verticality, symmetry, and a stately appearance. Usually features large cornice bracketing, and often has curved window and stone trim with floral patterns.",
       url: "https://chicagoarchitecturedata.com/static/images/building_images/1249-w-18th-street-1416701813.jpg.800x800_q85_upscale.jpg",
       photoCredit: "John Morris",
       photoCreditLink: "http://john-morris.com/"
@@ -368,7 +368,7 @@
     },
     Sullivanesque: {
       style: "Sullivanesque",
-      description: "A subgroup of the Prairie Style, the Sullivanesque style is named an important figure in archictecture, Louis Sullivan. This style is typically identified by a lack of historical ornament, a low-pitched or flat roof, and geometric forms and shapes. Sullivanesque ornamentation is circular and floral, whereas the other subgroups of the Prairie Style, particularly practiced by Frank Lloyd Wright, are angular and linear in nature.",
+      description: "A subgroup of the Prairie Style, the Sullivanesque style is named for an important figure in archictecture, Louis Sullivan. This style is typically identified by a lack of historical ornament, a low-pitched or flat roof, and geometric forms and shapes. Sullivanesque ornamentation is circular and floral, whereas the other subgroups of the Prairie Style, particularly practiced by Frank Lloyd Wright, are angular and linear in nature.",
       url: "https://chicagoarchitecturedata.com/static/images/building_images/40-e-55th-street-1410219898.jpg.800x800_q85_upscale.jpg",
       photoCredit: "John Morris",
       photoCreditLink: "http://john-morris.com/"
