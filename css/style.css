@@ -8,6 +8,10 @@ body {
   font-size: 1rem;
 }
 
+.height-full {
+  height: 100%;
+}
+
 a {
   color: #6EBCD8;
 }
@@ -210,7 +214,7 @@ h6 {
 }
 
 #style-card {
-  /* max-height: 500px; */
+  max-height: 500px;
 }
 
 @media (min-width: 544px) {
@@ -228,10 +232,6 @@ h6 {
 @media (min-width: 1200px) {
   #style-card {}
 }
-
-/* .card {
-  height: auto;
-} */
 
 .locate-button {
   font-size: .5rem;
@@ -254,7 +254,7 @@ h6 {
 }
 
 #map {
-  height: 650px;
+  height: 100%;
 }
 
 .leaflet-popup-content h1 {
