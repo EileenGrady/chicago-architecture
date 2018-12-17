@@ -16,15 +16,19 @@
   //so label pane won't register clicks, therefore blocking any buildings underneath a user tries to click on
   map.getPane('labels').style.pointerEvents = 'none';
 
-  // Adding Voyager Basemap
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
-    maxZoom: 18
+  // Adding Positron Basemap
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+  	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  	subdomains: 'abcd',
+  	maxZoom: 19
   }).addTo(map);
 
-  // Adding Voyager Labels
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    pane: 'labels' //define which pane the labels is part of
+  // Adding Positron Labels
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+  	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  	subdomains: 'abcd',
+  	maxZoom: 19,
+    pane: 'labels'
   }).addTo(map);
 
   //create user interaction that finds user location on map when button is pressed
@@ -72,29 +76,9 @@
   //declare empty LayerGroup that will hold temporary layers to be removed during style filter
   var tempLayers = L.layerGroup();
 
-  //define icon to use for buildings
-  var buildingIcon = L.icon({
-    iconUrl: "icons/building-alt1-15.svg",
-    iconSize: 15,
-    tooltipAnchor: [0, -15] // Center of your icon is [0,0]
-  });
-
-  //define icon to use during mouseover event for user affordance
-  var hoverIcon = L.icon({
-    iconUrl: "icons/building-hover.svg",
-    iconSize: 15,
-    tooltipAnchor: [0, -15] // Center of your icon is [0,0]
-  });
-
   function drawMap(data) {
     // create Leaflet object and add to map
     var buildingLayer = L.geoJson(data, {
-
-      // pointToLayer: function(feature, latlng) {
-      //   return L.marker(latlng, {
-      //     icon:buildingIcon
-      //   });
-      // },
 
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, {
@@ -104,7 +88,7 @@
           // color: getColor(feature.properties.Style),
           color: "#737373",
           fillColor: getColor(feature.properties.Style),
-          fillOpacity: .7
+          fillOpacity: .8
         })
       },
 
@@ -195,6 +179,7 @@
     addStyleFilter(data, buildingLayer);
   }
 
+  //function to determine color for circle markers
   function getColor(style) {
     if (style == 'Gothic' || style == 'Tudor' || style == 'Eastlake' || style == 'Queen Anne' || style == 'Second Empire') {
       return "#66c2a5"
@@ -211,6 +196,7 @@
     }
   }
 
+  //define object that holds color and labels to be used in legend
   var styleGroups = {
     VictorianStyle: {
       group: "Victorian Styles",
