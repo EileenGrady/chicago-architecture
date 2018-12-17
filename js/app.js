@@ -86,9 +86,9 @@
           weight: 1,
           radius: 6,
           // color: getColor(feature.properties.Style),
-          color: "#737373",
+          color: "#404040",
           fillColor: getColor(feature.properties.Style),
-          fillOpacity: .8
+          fillOpacity: .85
         })
       },
 
