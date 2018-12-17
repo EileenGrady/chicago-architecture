@@ -210,10 +210,12 @@
     },
     ArtsAndCrafts: {
       group: "Arts and Crafts",
+      styles: "Prairie, Craftsman, Bungalow",
       color: "#8da0cb"
     },
     Chicago: {
       group: "Chicago Styles",
+      styles: "Chicago School, Sullivanesque",
       color: "#e78ac3"
     },
     Modernism: {
